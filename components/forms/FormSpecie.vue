@@ -25,6 +25,7 @@
             v-if="indexShowSpecieType !== -1"
             :data-specie-type="dataSpeciesFiltered[indexShowSpecie].types[indexShowSpecieType]"
             :open="indexSpecie === indexShowSpecie"
+            @modalClose="indexShowSpecieType = -1"
           />
           <div
             class="container-specie"

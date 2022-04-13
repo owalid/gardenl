@@ -99,9 +99,17 @@ export default {
     }
   },
   watch: {
-    open(newValue) {
-      this.is_open = newValue
-    }
+     is_open(newValue) {
+        if (!newValue) {
+          this.$emit('modalClose')
+        }
+      },
+      open(newValue) {
+        this.is_open = newValue
+        if (!newValue) {
+          this.$emit('modalClose')
+        }
+      }
   }
 }
 </script>
