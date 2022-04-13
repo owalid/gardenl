@@ -73,9 +73,58 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [/^vuetify/, 'vuex-persist'],
-    extractCSS: {
-      ignoreOrder: true
+    extractCSS: true,
+    standalone: true,
+    ignoreOrder: false,
+    filenames: {
+      chunk: ({ isDev }) => (isDev ? '[name].js' : '[id].[contenthash].js')
     },
+    html: {
+      minify: {
+        collapseBooleanAttributes: true,
+        decodeEntities: true,
+        minifyCSS: true,
+        minifyJS: true,
+        processConditionalComments: true,
+        removeEmptyAttributes: true,
+        removeRedundantAttributes: true,
+        trimCustomFragments: true,
+        useShortDoctype: true,
+        preserveLineBreaks: false,
+        collapseWhitespace: true
+      }
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        name: 'owalid',
+        minSize: 20000,
+        minChunks: 1,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        enforceSizeThreshold: 50000,
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.(css|vue)$/,
+            chunks: 'all',
+            enforce: true
+          },
+          defaultVendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
+            reuseExistingChunk: true,
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+        }
+      }
+    },
+
     /*
     ** You can extend webpack config here
     */
