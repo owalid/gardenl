@@ -1,7 +1,6 @@
 [
     {
         "specie": "Aubergine",
-        "src_img": "/species_icons/aubergine.svg",
         "types": [
             {
                 "fertilization": "Forte",
@@ -52,7 +51,6 @@
     },
     {
         "specie": "Betterave",
-        "src_img": "/species_icons/betterave.svg",
         "types": [
             {
                 "fertilization": "Faible",
@@ -103,7 +101,6 @@
     },
     {
         "specie": "Carotte",
-        "src_img": "/species_icons/carotte.svg",
         "types": [
             {
                 "fertilization": "Faible",
@@ -154,7 +151,6 @@
     },
     {
         "specie": "Céleris",
-        "src_img": "/species_icons/celeris.svg",
         "types": [
             {
                 "fertilization": "Forte",
@@ -190,7 +186,6 @@
     },
     {
         "specie": "Courgette",
-        "src_img": "/species_icons/courgette.svg",
         "types": [
             {
                 "fertilization": "Forte",
@@ -241,7 +236,6 @@
     },
     {
         "specie": "Haricot",
-        "src_img": "/species_icons/haricot.svg",
         "types": [
             {
                 "fertilization": "Forte",
@@ -292,7 +286,6 @@
     },
     {
         "specie": "Laitue",
-        "src_img": "/species_icons/laitue.svg",
         "types": [
             {
                 "fertilization": "Faible",
@@ -343,7 +336,6 @@
     },
     {
         "specie": "Oignon",
-        "src_img": "/species_icons/oignon.svg",
         "types": [
             {
                 "fertilization": "Moyen",
@@ -394,7 +386,6 @@
     },
     {
         "specie": "Poireau",
-        "src_img": "/species_icons/poireau.svg",
         "types": [
             {
                 "fertilization": "Faible",
@@ -445,7 +436,6 @@
     },
     {
         "specie": "Pois",
-        "src_img": "/species_icons/pois.svg",
         "types": [
             {
                 "fertilization": "Forte",
@@ -496,7 +486,6 @@
     },
     {
         "specie": "Radis",
-        "src_img": "/species_icons/radis.svg",
         "types": [
             {
                 "fertilization": "Faible",
@@ -547,7 +536,6 @@
     },
     {
         "specie": "Tomate",
-        "src_img": "/species_icons/tomate.svg",
         "types": [
             {
                 "fertilization": "Forte",

@@ -31,15 +31,21 @@ const main = async () => {
 
       let complete_name = await page.$('h1')
       complete_name = await page.evaluate(el => el.textContent, complete_name)
-      console.log("complete_name", complete_name)
 
+      let culture = await page.$('#A84')
+      culture = await page.evaluate(el => el.textContent, culture)
 
       let spacing = await page.$('#A94')
       spacing = await page.evaluate(el => el.textContent.trim(), spacing)
 
+      let latin_name = await page.$('#A25')
+      latin_name = await page.evaluate(el => el.textContent.trim(), latin_name)
+
+      let family_name = await page.$('#A27')
+      family_name = await page.evaluate(el => el.textContent.trim(), family_name)
+
       let descriptions = await page.$('#A15')
       const description = await page.evaluate(el => el.textContent, descriptions)
-      console.log("description", description)
       
       let image = await page.$$('img')
       image = image[3]
@@ -56,13 +62,26 @@ const main = async () => {
       elmts_recolte.shift()
       const start_end_months_recolte = getMonthStartEndRecolte(elmts_recolte)
 
-      final_results[index_specie].types[index_type] = {...final_results[index_specie].types[index_type], ...start_end_months_semis, ...start_end_months_recolte, src_img, complete_name, description, spacing}
+      final_results[index_specie].types[index_type] = {
+        ...final_results[index_specie].types[index_type],
+        ...start_end_months_semis,
+        ...start_end_months_recolte,
+        src_img,
+        complete_name,
+        description,
+        spacing,
+        latin_name,
+        family_name,
+        culture
+      }
       delete final_results[index_specie].types[index_type].link;
-      await page.goBack();
-      await page.waitFor(1000)
+      // await page.goBack();
+      // await page.waitFor(1000)
     }
+    console.log(`[+] FINISHED ${final_results[index_specie].specie} (${index_specie + 1}/${final_results.length})`)
   }
-  fs.writeFileSync('result.json', JSON.stringify(final_results, null, 4))
+  fs.writeFileSync('dataSpecies.json', JSON.stringify(final_results, null, 4))
+  browser = await browser.close();
 }
 
 main()
