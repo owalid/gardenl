@@ -50,7 +50,7 @@
               class="ml-4 my-0 py-0 compact-checkbox"
             >
               <v-switch                
-                v-model="tmp"
+                v-model="dataSpeciesChecked[indexSpecie].types[indexType].checked"
                 :label="type.complete_name"
                 hide-details
               >
@@ -95,8 +95,23 @@ export default {
       indexShowSpecieType: -1,
       dataSpecies,
       textSearch: '',
-      currentOver: -1
+      currentOver: -1,
+      dataSpeciesChecked: [],
     }
+  },
+  fetch() { 
+    // create an array of objects with the same structure as dataSpecies with boolean element named "checked"
+    this.dataSpeciesChecked = dataSpecies.map(specie => {
+      return {
+        ...specie,
+        types: specie.types.map(type => {
+          return {
+            ...type,
+            checked: false
+          }
+        })
+      }
+    })
   },
   computed: {
     dataSpeciesFiltered() {
