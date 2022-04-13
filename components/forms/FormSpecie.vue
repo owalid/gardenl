@@ -103,10 +103,8 @@ export default {
     // create an array of objects with the same structure as dataSpecies with boolean element named "checked"
     this.dataSpeciesChecked = dataSpecies.map(specie => {
       return {
-        ...specie,
         types: specie.types.map(type => {
           return {
-            ...type,
             checked: false
           }
         })
