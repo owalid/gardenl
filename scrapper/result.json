@@ -1,0 +1,377 @@
+[
+    {
+        "specie": "Eggplant",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-aubergine_blanche_dourga-article-AUD.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "04",
+                "month_start_recolte": "07",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/AUD_1.jpg",
+                "complete_name": "Aubergine blanche Dourga"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-aubergine_imperial_black_beauty-article-AUI.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "04",
+                "month_start_recolte": "07",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/AUI_1.jpg",
+                "complete_name": "Aubergine impérial black beauty"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-aubergine_listada_de_gandia-article-ALG.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "04",
+                "month_start_recolte": "07",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/ALG_1.jpg",
+                "complete_name": "Aubergine listada de Gandia"
+            }
+        ]
+    },
+    {
+        "specie": "Betterave",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-betterave_rouge_jannis-article-BEJ.awp?pgnIdCategorie=32",
+                "month_start_semis": "03",
+                "month_end_semis": "08",
+                "month_start_recolte": "05",
+                "month_end_recolte": "11",
+                "src_img": "https://www.germinance.com/photos/articles/BEJ_1.jpg",
+                "complete_name": "Betterave rouge Jannis"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-betterave_tondo_di_chioggia-article-BET.awp?pgnIdCategorie=32",
+                "month_start_semis": "03",
+                "month_end_semis": "07",
+                "month_start_recolte": "06",
+                "month_end_recolte": "11",
+                "src_img": "https://www.germinance.com/photos/articles/BET_1.jpg",
+                "complete_name": "Betterave Tondo di Chioggia"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-betterave_crapaudine-article-BEC.awp?pgnIdCategorie=32",
+                "month_start_semis": "04",
+                "month_end_semis": "05",
+                "month_start_recolte": "06",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/BEC_1.jpg",
+                "complete_name": "Betterave Crapaudine"
+            }
+        ]
+    },
+    {
+        "specie": "Carotte",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-carotte_demi_longue_rouge_sang-article-CAS.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "07",
+                "month_start_recolte": "05",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/CAS_1.jpg",
+                "complete_name": "Carotte demi-longue rouge sang"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-carotte_nantaise_dolciva-article-CAO.awp?pgnIdCategorie=32",
+                "month_start_semis": "03",
+                "month_end_semis": "07",
+                "month_start_recolte": "06",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/CAO_1.jpg",
+                "complete_name": "Carotte nantaise Dolciva"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-carotte_robila-article-CAA.awp?pgnIdCategorie=32",
+                "month_start_semis": "04",
+                "month_end_semis": "06",
+                "month_start_recolte": "08",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/CAA_1.jpg",
+                "complete_name": "Carotte Robila"
+            }
+        ]
+    },
+    {
+        "specie": "Céleris",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-celeri_rave_monarch-article-CRM.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "03",
+                "month_start_recolte": "08",
+                "month_end_recolte": "11",
+                "src_img": "https://www.germinance.com/photos/articles/CRM_1.jpg",
+                "complete_name": "Céleri-rave Monarch"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_feuilles-celeri_a_cotes_violet_de_tours-article-CEV.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "06",
+                "month_start_recolte": "08",
+                "month_end_recolte": "11",
+                "src_img": "https://www.germinance.com/photos/articles/CEV_1.jpg",
+                "complete_name": "Céleri à côtes violet de Tours"
+            }
+        ]
+    },
+    {
+        "specie": "Courgette",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-courgette_black_beauty-article-CBB.awp?pgnIdCategorie=32",
+                "month_start_semis": "04",
+                "month_end_semis": "07",
+                "month_start_recolte": "06",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/CBB_1.jpg",
+                "complete_name": "Courgette Black Beauty"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-courgette_grise_d_alger-article-CGA.awp?pgnIdCategorie=32",
+                "month_start_semis": "04",
+                "month_end_semis": "07",
+                "month_start_recolte": "06",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/CGA_1.jpg",
+                "complete_name": "Courgette grise d'Alger"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-courgette_jaune_rheinau_gold-article-CJR.awp?pgnIdCategorie=32",
+                "month_start_semis": "04",
+                "month_end_semis": "07",
+                "month_start_recolte": "04",
+                "month_end_recolte": "07",
+                "src_img": "https://www.germinance.com/photos/articles/CJR_1.jpg",
+                "complete_name": "Courgette jaune Rheinau Gold"
+            }
+        ]
+    },
+    {
+        "specie": "Haricot",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-haricot_a_rame_a_ecosser_mais_dit_tarbais-article-HRT.awp?pgnIdCategorie=32",
+                "month_start_semis": "05",
+                "month_end_semis": "06",
+                "month_start_recolte": "09",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/HRT_1.jpg",
+                "complete_name": "Haricot à rame à écosser Maïs (dit tarbais)"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-haricot_a_rame_a_ecosser_coco_bicolore_prolifique-article-HBP.awp?pgnIdCategorie=32",
+                "month_start_semis": "04",
+                "month_end_semis": "06",
+                "month_start_recolte": "09",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/HBP_1.jpg",
+                "complete_name": "Haricot à rame à écosser coco bicolore prolifique"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-haricot_nain_mangetout_slenderette-article-HSL.awp?pgnIdCategorie=32",
+                "month_start_semis": "05",
+                "month_end_semis": "07",
+                "month_start_recolte": "08",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/HSL_1.jpg",
+                "complete_name": "Haricot nain mangetout Slenderette"
+            }
+        ]
+    },
+    {
+        "specie": "Laitue",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_feuilles-laitue_batavia_goutte_de_sang-article-LBS.awp?pgnIdCategorie=32",
+                "month_start_semis": "01",
+                "month_end_semis": "09",
+                "month_start_recolte": "03",
+                "month_end_recolte": "11",
+                "src_img": "https://www.germinance.com/photos/articles/LBS_1.jpg",
+                "complete_name": "Laitue batavia goutte de sang"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_feuilles-laitue_batavia_beaujolaise-article-LBB.awp?pgnIdCategorie=32",
+                "month_start_semis": "04",
+                "month_end_semis": "06",
+                "month_start_recolte": "06",
+                "month_end_recolte": "08",
+                "src_img": "https://www.germinance.com/photos/articles/LBB_1.jpg",
+                "complete_name": "Laitue batavia Beaujolaise"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_feuilles-laitue_pommee_merveille_d_hiver-article-LMH.awp?pgnIdCategorie=32",
+                "month_start_semis": "08",
+                "month_end_semis": "09",
+                "month_start_recolte": "03",
+                "month_end_recolte": "05",
+                "src_img": "https://www.germinance.com/photos/articles/LMH_1.jpg",
+                "complete_name": "Laitue pommée merveille d'hiver"
+            }
+        ]
+    },
+    {
+        "specie": "Oignon",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-oignon_blanc_de_rebouillon-article-OIB.awp?pgnIdCategorie=32",
+                "month_start_semis": "01",
+                "month_end_semis": "03",
+                "month_start_recolte": "06",
+                "month_end_recolte": "08",
+                "src_img": "https://www.germinance.com/photos/articles/OIB_1.jpg",
+                "complete_name": "Oignon blanc de Rebouillon"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-oignon_cuisse_de_poulet_du_poitou-article-OIC.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "03",
+                "month_start_recolte": "06",
+                "month_end_recolte": "09",
+                "src_img": "https://www.germinance.com/photos/articles/OIC_1.jpg",
+                "complete_name": "Oignon cuisse de poulet du Poitou"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-oignon_doux_de_lezignan-article-OIL.awp?pgnIdCategorie=32",
+                "month_start_semis": "01",
+                "month_end_semis": "02",
+                "month_start_recolte": "05",
+                "month_end_recolte": "07",
+                "src_img": "https://www.germinance.com/photos/articles/OIL_1.jpg",
+                "complete_name": "Oignon doux de Lézignan"
+            }
+        ]
+    },
+    {
+        "specie": "Poireau",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_feuilles-poireau_armor-article-PAR.awp?pgnIdCategorie=32",
+                "month_start_semis": "03",
+                "month_end_semis": "04",
+                "month_start_recolte": "10",
+                "month_end_recolte": "12",
+                "src_img": "https://www.germinance.com/photos/articles/PAR_1.jpg",
+                "complete_name": "Poireau Armor"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_feuilles-poireau_geant_d_hiver-article-PGH.awp?pgnIdCategorie=32",
+                "month_start_semis": "03",
+                "month_end_semis": "04",
+                "month_start_recolte": "01",
+                "month_end_recolte": "02",
+                "src_img": "https://www.germinance.com/photos/articles/PGH_1.jpg",
+                "complete_name": "Poireau géant d'hiver"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_feuilles-poireau_gros_long_d_ete-article-PGL.awp?pgnIdCategorie=32",
+                "month_start_semis": "03",
+                "month_end_semis": "05",
+                "month_start_recolte": "08",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/PGL_1.jpg",
+                "complete_name": "Poireau gros long d'été"
+            }
+        ]
+    },
+    {
+        "specie": "Pois",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-pois_croquant_a_rame_delikett-article-PCD.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "05",
+                "month_start_recolte": "04",
+                "month_end_recolte": "06",
+                "src_img": "https://www.germinance.com/photos/articles/PCD_1.jpg",
+                "complete_name": "Pois croquant à rame Delikett"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-pois_nain_a_ecosser_merveille_de_kelvedon-article-POK.awp?pgnIdCategorie=32",
+                "month_start_semis": "03",
+                "month_end_semis": "04",
+                "month_start_recolte": "05",
+                "month_end_recolte": "06",
+                "src_img": "https://www.germinance.com/photos/articles/POK_1.jpg",
+                "complete_name": "Pois nain à écosser merveille de Kelvedon"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-petit_pois_a_rame_senateur-article-POS.awp?pgnIdCategorie=32",
+                "month_start_semis": "03",
+                "month_end_semis": "06",
+                "month_start_recolte": "06",
+                "month_end_recolte": "09",
+                "src_img": "https://www.germinance.com/photos/articles/POS_1.jpg",
+                "complete_name": "Petit pois à rame Sénateur"
+            }
+        ]
+    },
+    {
+        "specie": "Radis",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-radis_d_hiver_noir_rond-article-RNR.awp?pgnIdCategorie=32",
+                "month_start_semis": "07",
+                "month_end_semis": "08",
+                "month_start_recolte": "09",
+                "month_end_recolte": "11",
+                "src_img": "https://www.germinance.com/photos/articles/RNR_1.jpg",
+                "complete_name": "Radis d'hiver noir rond"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-radis_daikon-article-RAM.awp?pgnIdCategorie=32",
+                "month_start_semis": "05",
+                "month_end_semis": "08",
+                "month_start_recolte": "07",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/RAM_1.jpg",
+                "complete_name": "Radis Daïkon"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_racines-radis_flamboyant-article-RFL.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "09",
+                "month_start_recolte": "03",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/RFL_1.jpg",
+                "complete_name": "Radis Flamboyant"
+            }
+        ]
+    },
+    {
+        "specie": "Tomate",
+        "types": [
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-tomate_cerise_black_cherry-article-TBC.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "05",
+                "month_start_recolte": "06",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/TBC_1.jpg",
+                "complete_name": "Tomate cerise black cherry"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-tomate_ananas_jaune-article-TOA.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "05",
+                "month_start_recolte": "07",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/TOA_1.jpg",
+                "complete_name": "Tomate ananas jaune"
+            },
+            {
+                "link": "https://www.germinance.com/boutique/legumes_fruits-tomate_a_soupe_campbell-article-TAS.awp?pgnIdCategorie=32",
+                "month_start_semis": "02",
+                "month_end_semis": "04",
+                "month_start_recolte": "07",
+                "month_end_recolte": "10",
+                "src_img": "https://www.germinance.com/photos/articles/TAS_1.jpg",
+                "complete_name": "Tomate à soupe Campbell"
+            }
+        ]
+    }
+]
