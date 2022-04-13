@@ -33,11 +33,18 @@ const main = async () => {
       complete_name = await page.evaluate(el => el.textContent, complete_name)
       console.log("complete_name", complete_name)
 
+
+      let spacing = await page.$('#A94')
+      spacing = await page.evaluate(el => el.textContent.trim(), spacing)
+
+      let descriptions = await page.$('#A15')
+      const description = await page.evaluate(el => el.textContent, descriptions)
+      console.log("description", description)
+      
       let image = await page.$$('img')
       image = image[3]
       let src_img = await page.evaluate(el => el.src, image)
       src_img = src_img.replace('_mini', '')
-      console.log('src_img', src_img)
 
       let elmts_semis = await page.$$(line_semis)
       elmts_semis = [...elmts_semis]
@@ -49,7 +56,8 @@ const main = async () => {
       elmts_recolte.shift()
       const start_end_months_recolte = getMonthStartEndRecolte(elmts_recolte)
 
-      final_results[index_specie].types[index_type] = {...final_results[index_specie].types[index_type], ...start_end_months_semis, ...start_end_months_recolte, src_img, complete_name}
+      final_results[index_specie].types[index_type] = {...final_results[index_specie].types[index_type], ...start_end_months_semis, ...start_end_months_recolte, src_img, complete_name, description, spacing}
+      delete final_results[index_specie].types[index_type].link;
       await page.goBack();
       await page.waitFor(1000)
     }
