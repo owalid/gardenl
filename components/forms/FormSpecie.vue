@@ -79,7 +79,7 @@
   </v-container>
 </template>
 <script>
-import dataSpecies from '~/scrapper/dataSpecies.json'
+import dataSpecies from '~/data/dataSpecies.json'
 import ModalDisplaySpecieType from '~/components/modals/ModalDisplaySpecieType'
 
 export default {
