@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs')
-const final_results = require('./links_species.json')
+const final_results = require('../data/links_species.json')
 
 const line_semis = '.ligne-semis > td'
 const line_recolte = '.ligne-recolte > td'
@@ -75,12 +75,10 @@ const main = async () => {
         culture
       }
       delete final_results[index_specie].types[index_type].link;
-      // await page.goBack();
-      // await page.waitFor(1000)
     }
     console.log(`[+] FINISHED ${final_results[index_specie].specie} (${index_specie + 1}/${final_results.length})`)
   }
-  fs.writeFileSync('dataSpecies.json', JSON.stringify(final_results, null, 4))
+  fs.writeFileSync('../data/dataSpecies.json', JSON.stringify(final_results, null, 4))
   browser = await browser.close();
 }
 
