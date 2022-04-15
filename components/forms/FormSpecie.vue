@@ -48,13 +48,38 @@
               v-for="(type, indexType) in dataSpecie.types"
               :key="indexType"
               class="ml-4 my-0 py-0 compact-checkbox"
+              align="baseline"
             >
-              <v-switch                
-                v-model="dataSpeciesChecked[indexSpecie].types[indexType].checked"
-                :label="type.complete_name"
-                hide-details
-              >
-              </v-switch>
+              <!-- decrement -->
+                <v-icon
+                  class="my-0 py-0"
+                  x-small 
+                  @click="updateQuantity(indexSpecie, indexType, dataSpecies[indexSpecie].types[indexType].quantity-1)"
+                >
+                  fas fa-minus
+                </v-icon>
+                <div class="pt-0 mx-1" style="width: 45px;">
+                  <v-text-field
+                    :value="dataSpecies[indexSpecie].types[indexType].quantity"
+                    class="pt-0 mt-0 input-qty"
+                    hide-details
+                    single-line
+                    solo
+                    dense
+                    readonly
+                    flat
+                  ></v-text-field>
+                </div>
+
+                <!-- increment -->
+                <v-icon
+                  class="my-0 py-0"
+                  x-small
+                  @click="updateQuantity(indexSpecie, indexType, dataSpecies[indexSpecie].types[indexType].quantity+1)"
+                >
+                  fas fa-plus
+                </v-icon>
+            <p class="ml-3">{{ type.complete_name }}</p>
             <v-icon
               small
               class="ml-2 mt-5 cursor-pointer"
@@ -64,8 +89,14 @@
             </v-icon>
             </v-row>
             <v-row class="pb-7 mr-2 mt-3" justify="end">
-              <v-btn class="pb-2" plain small color="primary">
-                Valider <v-icon small class="ml-1">fas fa-chevron-right</v-icon>
+              <v-btn
+                class="pb-2"
+                plain
+                small
+                color="primary"
+                @click="indexShowSpecie = -1"
+              >
+                Fermer
               </v-btn>
             </v-row>
           </div>
@@ -99,19 +130,10 @@ export default {
       dataSpeciesChecked: [],
     }
   },
-  fetch() { 
-    // create an array of objects with the same structure as dataSpecies with boolean element named "checked"
-    this.dataSpeciesChecked = dataSpecies.map(specie => {
-      return {
-        types: specie.types.map(type => {
-          return {
-            checked: false
-          }
-        })
-      }
-    })
-  },
   computed: {
+    payload() {
+      return ''
+    },
     dataSpeciesFiltered() {
       if (!this.textSearch) {
         return this.dataSpecies
@@ -126,6 +148,13 @@ export default {
     }
   },
   methods: {
+    updateQuantity(indexSpecie, indexType, quantity) {
+      // update quantity only if quantity is positive
+      quantity = +quantity
+      if (quantity >= 0 && typeof(quantity) === 'number') {
+        this.dataSpecies[indexSpecie].types[indexType].quantity = quantity
+      } 
+    },
     updateIndexShowSpecie(indexSpecie) {
       if (this.indexShowSpecie === indexSpecie) {
         this.indexShowSpecie = -1
@@ -184,7 +213,8 @@ export default {
 }
 
  .container-type {
-    width: 350px;
+    min-width: 350px;
+    max-width: 500px;
     height: auto;
     border-radius: 12px;
     position: absolute;
@@ -197,5 +227,15 @@ export default {
   .compact-checkbox {
     transform: scale(0.85);
     transform-origin: left;
+
   }
+    .input-qty >>> input[type="number"] {
+  -moz-appearance: textfield;
+}
+.input-qty >>> input::-webkit-outer-spin-button,
+.input-qty >>> input::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
 </style>

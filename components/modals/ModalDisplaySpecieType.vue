@@ -70,8 +70,11 @@
             </v-row>
           </v-col>
         </v-row>
-        <v-row class="mr-2 mt-3" justify="end">
-          <v-btn class="pb-2" plain small color="primary">
+        <v-row class="mr-2 mt-10" justify="end">
+          <v-btn
+            class="pb-2" plain small color="primary"
+            @click="is_open = false"
+          >
             Fermer
           </v-btn>
         </v-row>
