@@ -60,6 +60,7 @@ export default {
         light: {
           primary: "#73AE2C",
           accent: colors.grey.darken3,
+          lgrey: colors.grey.lighten2,
           secondary: '#4C0976',
           info: colors.teal.lighten1,
           warning: colors.amber.base,
