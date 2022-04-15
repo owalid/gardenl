@@ -1,6 +1,7 @@
 [
   {
     "specie": "Aubergine",
+    "specie_index": "eggplant",
     "src_img": "/species_icons/aubergine.svg",
     "types": [
       {
@@ -22,6 +23,7 @@
   },
   {
     "specie": "Betterave",
+    "specie_index": "beet",
     "src_img": "/species_icons/betterave.svg",
     "types": [
       {
@@ -43,6 +45,7 @@
   },
   {
     "specie": "Carotte",
+    "specie_index": "carrot",
     "src_img": "/species_icons/carotte.svg",
     "types": [
       {
@@ -64,6 +67,7 @@
   },
   {
     "specie": "Céleris",
+    "specie_index": "celery",
     "src_img": "/species_icons/celeris.svg",
     "types": [
       {
@@ -80,6 +84,7 @@
   },
   {
     "specie": "Courgette",
+    "specie_index": "zucchini",
     "src_img": "/species_icons/courgette.svg",
     "types": [
       {
@@ -101,6 +106,7 @@
   },
   {
     "specie": "Haricot",
+    "specie_index": "bean",
     "src_img": "/species_icons/haricot.svg",
     "types": [
       {
@@ -122,6 +128,7 @@
   },
   {
     "specie": "Laitue",
+    "specie_index": "lettuce",
     "src_img": "/species_icons/laitue.svg",
     "types": [
       {
@@ -143,6 +150,7 @@
   },
   {
     "specie": "Oignon",
+    "specie_index": "onion",
     "src_img": "/species_icons/oignon.svg",
     "types": [
       {
@@ -164,6 +172,7 @@
   },
   {
     "specie": "Poireau",
+    "specie_index": "leek",
     "src_img": "/species_icons/poireau.svg",
     "types": [
       {
@@ -185,6 +194,7 @@
   },
   {
     "specie": "Pois",
+    "specie_index": "pea",
     "src_img": "/species_icons/pois.svg",
     "types": [
       {
@@ -206,6 +216,7 @@
   },
   {
     "specie": "Radis",
+    "specie_index": "radish",
     "src_img": "/species_icons/radis.svg",
     "types": [
       {
@@ -227,6 +238,7 @@
   },
   {
     "specie": "Tomate",
+    "specie_index": "tomato",
     "src_img": "/species_icons/tomate.svg",
     "types": [
       {

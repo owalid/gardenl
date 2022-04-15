@@ -65,7 +65,44 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+          success: colors.green.accent3,
+
+          eggplantsemi: colors.deepPurple.lighten1,
+          eggplantrecolte: colors.deepPurple.lighten4,
+
+          beetsemi: colors.pink.lighten1,
+          beetrecolte: colors.pink.lighten4,
+
+          carrotsemi: colors.deepOrange.lighthen1,
+          carrotrecolte: colors.deepOrange.lighten4,
+
+          celerysemi: colors.lime.lighthen1,
+          celeryrecolte: colors.lime.lighten4,
+
+          zucchinisemi: colors.indigo.lighthen1,
+          zucchinirecolte: colors.indigo.lighten4,
+
+          beansemi: colors.brown.lighthen1,
+          beanrecolte: colors.brown.lighten4,
+
+          lettucesemi: colors.lightGreen.lighthen1,
+          lettucerecolte: colors.lightGreen.lighten4,
+
+          onionsemi: colors.amber.lighthen1,
+          onionrecolte: colors.amber.lighten4,
+
+          leeksemi: colors.cyan.lighthen1,
+          leekrecolte: colors.cyan.lighten4,
+
+          peasemi: colors.teal.lighthen1,
+          pearecolte: colors.teal.lighten4,
+
+          radishsemi: colors.purple.lighthen1,
+          radishrecolte: colors.purple.lighten4,
+
+          tomatosemi: colors.red.lighthen1,
+          tomatorecolte: colors.red.lighten4,
+
         }
       }
     }
