@@ -1,8 +1,5 @@
 <template>
   <v-container>
-    <pre>
-      {{ speciesDetailed[0] }}
-    </pre>
      <v-simple-table>
       <template #default>
         <thead>
@@ -30,41 +27,10 @@
               </v-chip>
             </td>
             <td>
-              <v-row
-                class="ml-4 my-0 py-0 compact-checkbox"
-                align="baseline"
-              >
-              <!-- decrement -->
-                <v-icon
-                  class="my-0 py-0"
-                  x-small 
-                  @click="updateQuantity(idSpecieDetailed, specieDetailed.quantity-1)"
-                >
-                  fas fa-minus
-                </v-icon>
-                <div class="pt-0 mx-1" style="width: 45px;">
-                  <!-- <v-text-field
-                    :value="specieDetailed.quantity"
-                    class="pt-0 mt-0 input-qty"
-                    hide-details
-                    single-line
-                    solo
-                    dense
-                    readonly
-                    flat
-                  ></v-text-field> -->
-                  {{ specieDetailed.quantity }}
-                </div>
-
-                <!-- increment -->
-                <v-icon
-                  class="my-0 py-0"
-                  x-small
-                  @click="updateQuantity(idSpecieDetailed, specieDetailed.quantity+1)"
-                >
-                  fas fa-plus
-                </v-icon>
-                </v-row>
+              <input-quantity
+                :index-type="specieDetailed.index"
+                :quantity="specieDetailed.quantity"
+              />
             </td>
             <td>
               {{ specieDetailed.yield_by_plank }}
@@ -83,21 +49,15 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import InputQuantity from '~/components/inputs/InputQuantity.vue'
 
 export default {
   name: "DetailSpeciesTable",
+  components: {InputQuantity},
   computed: {
     ...mapGetters({
       speciesDetailed: 'getSpeciesDetailed'
     })
-  },
-  methods: {
-    updateQuantity(idSpecieDetailed, quantity) {
-     console.log({
-        idSpecieDetailed,
-        quantity
-      })
-    }
   }
 }
 </script>
@@ -106,10 +66,9 @@ export default {
   width: 50px;
   height: 30px; 
 }
-
-  .compact-checkbox {
-    transform: scale(0.85);
-    transform-origin: left;
-
+tbody {
+  tr:hover {
+    background-color: transparent !important;
   }
+}
 </style>

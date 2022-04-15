@@ -195,18 +195,9 @@ export default {
     margin-top: 210px;
   }
 
-  .compact-checkbox {
-    transform: scale(0.85);
-    transform-origin: left;
+.compact-checkbox {
+  transform: scale(0.85);
+  transform-origin: left;
 
-  }
-    .input-qty >>> input[type="number"] {
-  -moz-appearance: textfield;
-}
-.input-qty >>> input::-webkit-outer-spin-button,
-.input-qty >>> input::-webkit-inner-spin-button {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
 }
 </style>

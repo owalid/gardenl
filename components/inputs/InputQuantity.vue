@@ -1,13 +1,14 @@
 <template>
   <div  class="d-flex flex-row ma-0 pa-0" align="baseline">
       <!-- decrement -->
-      <v-icon
-        class="ma-0 pa-0"
-        x-small 
-        @click="updateQuantity(quantity-1)"
-      >
-        fas fa-minus
-      </v-icon>
+      <div class="d-flex align-center ma-0 pa-0 cursor-pointer" @click="updateQuantity(quantity-1)">
+        <v-icon
+          class="ma-0 pa-0"
+          x-small 
+        >
+          fas fa-minus
+        </v-icon>
+      </div>
       <div class="pt-0 mx-1" style="width: 45px;">
         <v-text-field
           :value="quantity"
@@ -21,13 +22,14 @@
         ></v-text-field>
       </div>
       <!-- increment -->
-      <v-icon
-        class="ma-0 pa-0"
-        x-small
-        @click="updateQuantity(quantity+1)"
-      >
-        fas fa-plus
-      </v-icon>
+      <div class="d-flex align-center ma-0 pa-0 cursor-pointer"  @click="updateQuantity(quantity+1)">
+        <v-icon
+          class="ma-0 pa-0"
+          x-small
+        >
+          fas fa-plus
+        </v-icon>
+      </div>
     </div>
 </template>
 <script>
@@ -63,8 +65,6 @@ export default {
           }
         })
       })
-      console.log("updateQuantity", quantity)
-      console.log("indexType", this.indexType)
       this.$store.commit('updateQuantity', {
         index: this.indexType,
         quantity
@@ -77,6 +77,8 @@ export default {
   .compact-checkbox {
     transform: scale(0.85);
     transform-origin: left;
-
+  }
+  .cursor-pointer {
+    cursor: pointer;
   }
 </style>
