@@ -78,7 +78,7 @@ const main = async () => {
     }
     console.log(`[+] FINISHED ${final_results[index_specie].specie} (${index_specie + 1}/${final_results.length})`)
   }
-  fs.writeFileSync('../data/dataSpecies.json', JSON.stringify(final_results, null, 4))
+  fs.writeFileSync('./data/dataSpecies.json', JSON.stringify(final_results, null, 4))
   browser = await browser.close();
 }
 

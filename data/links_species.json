@@ -21,7 +21,8 @@
                 "seconds_by_plank": 4902,
                 "time_cleaning": 0,
                 "packaging": "6-10° 90% humidité",
-                "yield_by_plank": "268,32",
+                "yield_by_plank": 268.32,
+                "it_duration": 4.861666667,
                 "quantity": 0,
                 "index": 0
             },
@@ -43,7 +44,8 @@
                 "seconds_by_plank": 4902,
                 "time_cleaning": 0,
                 "packaging": "6-10° 90% humidité",
-                "yield_by_plank": "268,32",
+                "yield_by_plank": 268.32,
+                "it_duration": 4.861666667,
                 "quantity": 0,
                 "index": 1
             },
@@ -65,7 +67,8 @@
                 "seconds_by_plank": 4902,
                 "time_cleaning": 0,
                 "packaging": "6-10° 90% humidité",
-                "yield_by_plank": "268,32",
+                "yield_by_plank": 268.32,
+                "it_duration": 4.861666667,
                 "quantity": 0,
                 "index": 2
             }
@@ -93,7 +96,8 @@
                 "seconds_by_plank": 5610,
                 "time_cleaning": 3600,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "134,4",
+                "yield_by_plank": 134.4,
+                "it_duration": 4.861666667,
                 "quantity": 0,
                 "index": 3
             },
@@ -115,7 +119,8 @@
                 "seconds_by_plank": 5610,
                 "time_cleaning": 3600,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "134,4",
+                "yield_by_plank": 134.4,
+                "it_duration": 4.861666667,
                 "quantity": 0,
                 "index": 4
             },
@@ -137,7 +142,8 @@
                 "seconds_by_plank": 5610,
                 "time_cleaning": 3600,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "134,4",
+                "yield_by_plank": 134.4,
+                "it_duration": 4.861666667,
                 "quantity": 0,
                 "index": 5
             }
@@ -165,7 +171,8 @@
                 "seconds_by_plank": 4721,
                 "time_cleaning": 3600,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "172,8",
+                "yield_by_plank": 172.8,
+                "it_duration": 4.861666667,
                 "quantity": 0,
                 "index": 6
             },
@@ -187,7 +194,8 @@
                 "seconds_by_plank": 4721,
                 "time_cleaning": 3600,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "172,8",
+                "yield_by_plank": 172.8,
+                "it_duration": 4.861666667,
                 "quantity": 0,
                 "index": 7
             },
@@ -209,7 +217,8 @@
                 "seconds_by_plank": 4721,
                 "time_cleaning": 3600,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "172,8",
+                "yield_by_plank": 172.8,
+                "it_duration": 4.861666667,
                 "quantity": 0,
                 "index": 8
             }
@@ -237,7 +246,8 @@
                 "seconds_by_plank": 5966,
                 "time_cleaning": 3600,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "139,2",
+                "yield_by_plank": 139.2,
+                "it_duration": 4.975108225,
                 "quantity": 0,
                 "index": 9
             },
@@ -259,7 +269,8 @@
                 "seconds_by_plank": 2983,
                 "time_cleaning": 1800,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "116,48",
+                "yield_by_plank": 116.48,
+                "it_duration": 4.975108225,
                 "quantity": 0,
                 "index": 10
             }
@@ -287,7 +298,8 @@
                 "seconds_by_plank": 3339,
                 "time_cleaning": 0,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "208",
+                "yield_by_plank": 208,
+                "it_duration": 4.975108225,
                 "quantity": 0,
                 "index": 11
             },
@@ -309,7 +321,8 @@
                 "seconds_by_plank": 3339,
                 "time_cleaning": 0,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "208",
+                "yield_by_plank": 208,
+                "it_duration": 4.975108225,
                 "quantity": 0,
                 "index": 12
             },
@@ -331,7 +344,8 @@
                 "seconds_by_plank": 3339,
                 "time_cleaning": 0,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "208",
+                "yield_by_plank": 208,
+                "it_duration": 4.975108225,
                 "quantity": 0,
                 "index": 13
             }
@@ -359,7 +373,8 @@
                 "seconds_by_plank": 12126,
                 "time_cleaning": 0,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "198,72",
+                "yield_by_plank": 198.72,
+                "it_duration": 4.975108225,
                 "quantity": 0,
                 "index": 14
             },
@@ -381,7 +396,8 @@
                 "seconds_by_plank": 12126,
                 "time_cleaning": 0,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "198,72",
+                "yield_by_plank": 198.72,
+                "it_duration": 4.975108225,
                 "quantity": 0,
                 "index": 15
             },
@@ -403,7 +419,8 @@
                 "seconds_by_plank": 12126,
                 "time_cleaning": 0,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "198,72",
+                "yield_by_plank": 198.72,
+                "it_duration": 4.975108225,
                 "quantity": 0,
                 "index": 16
             }
@@ -431,7 +448,8 @@
                 "seconds_by_plank": 2139,
                 "time_cleaning": 1800,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "133,12",
+                "yield_by_plank": 133.12,
+                "it_duration": 4.728142077,
                 "quantity": 0,
                 "index": 17
             },
@@ -453,7 +471,8 @@
                 "seconds_by_plank": 2139,
                 "time_cleaning": 1800,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "133,12",
+                "yield_by_plank": 133.12,
+                "it_duration": 4.728142077,
                 "quantity": 0,
                 "index": 18
             },
@@ -475,7 +494,8 @@
                 "seconds_by_plank": 2139,
                 "time_cleaning": 1800,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "133,12",
+                "yield_by_plank": 133.12,
+                "it_duration": 4.728142077,
                 "quantity": 0,
                 "index": 19
             }
@@ -503,7 +523,8 @@
                 "seconds_by_plank": 3056,
                 "time_cleaning": 2700,
                 "packaging": "Séchage 25° Stockage 6-10° au sec",
-                "yield_by_plank": "112,48",
+                "yield_by_plank": 112.48,
+                "it_duration": 4.728142077,
                 "quantity": 0,
                 "index": 20
             },
@@ -525,7 +546,8 @@
                 "seconds_by_plank": 3056,
                 "time_cleaning": 2700,
                 "packaging": "Séchage 25° Stockage 6-10° au sec",
-                "yield_by_plank": "112,48",
+                "yield_by_plank": 112.48,
+                "it_duration": 4.728142077,
                 "quantity": 0,
                 "index": 21
             },
@@ -547,7 +569,8 @@
                 "seconds_by_plank": 3056,
                 "time_cleaning": 2700,
                 "packaging": "Séchage 25° Stockage 6-10° au sec",
-                "yield_by_plank": "112,48",
+                "yield_by_plank": 112.48,
+                "it_duration": 4.728142077,
                 "quantity": 0,
                 "index": 22
             }
@@ -575,7 +598,8 @@
                 "seconds_by_plank": 3883,
                 "time_cleaning": 2700,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "111,36",
+                "yield_by_plank": 111.36,
+                "it_duration": 4.728142077,
                 "quantity": 0,
                 "index": 23
             },
@@ -597,7 +621,8 @@
                 "seconds_by_plank": 3883,
                 "time_cleaning": 2700,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "111,36",
+                "yield_by_plank": 111.36,
+                "it_duration": 4.728142077,
                 "quantity": 0,
                 "index": 24
             },
@@ -619,7 +644,8 @@
                 "seconds_by_plank": 3883,
                 "time_cleaning": 2700,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "111,36",
+                "yield_by_plank": 111.36,
+                "it_duration": 4.728142077,
                 "quantity": 0,
                 "index": 25
             }
@@ -647,7 +673,8 @@
                 "seconds_by_plank": 20531,
                 "time_cleaning": 0,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "135,52",
+                "yield_by_plank": 135.52,
+                "it_duration": 4.657142857,
                 "quantity": 0,
                 "index": 26
             },
@@ -669,7 +696,8 @@
                 "seconds_by_plank": 20531,
                 "time_cleaning": 0,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "135,52",
+                "yield_by_plank": 135.52,
+                "it_duration": 4.657142857,
                 "quantity": 0,
                 "index": 27
             },
@@ -691,7 +719,8 @@
                 "seconds_by_plank": 20531,
                 "time_cleaning": 0,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "135,52",
+                "yield_by_plank": 135.52,
+                "it_duration": 4.657142857,
                 "quantity": 0,
                 "index": 28
             }
@@ -719,7 +748,8 @@
                 "seconds_by_plank": 5726,
                 "time_cleaning": 2200,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "133,28",
+                "yield_by_plank": 133.28,
+                "it_duration": 4.328571429,
                 "quantity": 0,
                 "index": 29
             },
@@ -741,7 +771,8 @@
                 "seconds_by_plank": 5726,
                 "time_cleaning": 2200,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "133,28",
+                "yield_by_plank": 133.28,
+                "it_duration": 4.328571429,
                 "quantity": 0,
                 "index": 30
             },
@@ -763,7 +794,8 @@
                 "seconds_by_plank": 5726,
                 "time_cleaning": 2200,
                 "packaging": "0-2° 85-90% humidité",
-                "yield_by_plank": "133,28",
+                "yield_by_plank": 133.28,
+                "it_duration": 4.328571429,
                 "quantity": 0,
                 "index": 31
             }
@@ -791,7 +823,8 @@
                 "seconds_by_plank": 10430,
                 "time_cleaning": 0,
                 "packaging": "6-10° 90% humidité",
-                "yield_by_plank": "528",
+                "yield_by_plank": 528,
+                "it_duration": 3.094202899,
                 "quantity": 0,
                 "index": 32
             },
@@ -813,7 +846,8 @@
                 "seconds_by_plank": 10430,
                 "time_cleaning": 0,
                 "packaging": "6-10° 90% humidité",
-                "yield_by_plank": "528",
+                "yield_by_plank": 528,
+                "it_duration": 3.094202899,
                 "quantity": 0,
                 "index": 33
             },
@@ -835,7 +869,8 @@
                 "seconds_by_plank": 10430,
                 "time_cleaning": 0,
                 "packaging": "6-10° 90% humidité",
-                "yield_by_plank": "528",
+                "yield_by_plank": 528,
+                "it_duration": 3.094202899,
                 "quantity": 0,
                 "index": 34
             }

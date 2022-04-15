@@ -31,6 +31,44 @@ const data_agrihack_specie_and_type = require('./data_agrihack_specie_and_type.j
 //   "Rendement (€/planche)": "268,32"  24
 // },
 
+const it_durations = [
+  4.861666667,
+  4.861666667,
+  4.861666667,
+  4.975108225,
+  4.975108225,
+  4.975108225,
+  4.728142077,
+  4.728142077,
+  4.728142077,
+  4.657142857,
+  4.328571429,
+  3.094202899,
+  3.094202899,
+  3.094202899,
+  6.785087719,
+  6.785087719,
+  5.868421053,
+  3.010952381,
+  3.010952381,
+  3.010952381,
+  2.682312925,
+  2.682312925,
+  2.682312925,
+  2.828651685,
+  2.828651685,
+  2.828651685,
+  8.03630363,
+  7.28630363,
+  8.03630363,
+  4.007309942,
+  4.007309942,
+  4.007309942,
+  6.897297297,
+  6.897297297,
+  6.897297297,
+]
+
 const main = () => {
   const final_result = [...base_species]
   let i = 0
@@ -54,14 +92,15 @@ const main = () => {
         seconds_by_plank: values_data_agrihack[20],
         time_cleaning: values_data_agrihack[21],
         packaging: values_data_agrihack[22],
-        yield_by_plank: values_data_agrihack[24],
+        yield_by_plank: parseFloat(values_data_agrihack[24].replace(',', '.')),
+        it_duration: it_durations[indexSpecie],
         quantity: 0,
         index: i
       }
       i++;
     })
   });
-  fs.writeFileSync('links_species.json', JSON.stringify(final_result, null, 4))
+  fs.writeFileSync('./data/links_species.json', JSON.stringify(final_result, null, 4))
 }
 
 main()

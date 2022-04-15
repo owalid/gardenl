@@ -50,35 +50,10 @@
               class="ml-4 my-0 py-0 compact-checkbox"
               align="baseline"
             >
-              <!-- decrement -->
-                <v-icon
-                  class="my-0 py-0"
-                  x-small 
-                  @click="updateQuantity(indexSpecie, indexType, dataSpecies[indexSpecie].types[indexType].quantity-1)"
-                >
-                  fas fa-minus
-                </v-icon>
-                <div class="pt-0 mx-1" style="width: 45px;">
-                  <v-text-field
-                    :value="dataSpecies[indexSpecie].types[indexType].quantity"
-                    class="pt-0 mt-0 input-qty"
-                    hide-details
-                    single-line
-                    solo
-                    dense
-                    readonly
-                    flat
-                  ></v-text-field>
-                </div>
-
-                <!-- increment -->
-                <v-icon
-                  class="my-0 py-0"
-                  x-small
-                  @click="updateQuantity(indexSpecie, indexType, dataSpecies[indexSpecie].types[indexType].quantity+1)"
-                >
-                  fas fa-plus
-                </v-icon>
+              <input-quantity
+                :index-type="type.index"
+                :quantity="speciesQuantity[indexSpecie][indexType]"
+              />
             <p class="ml-3">{{ type.complete_name }}</p>
             <v-icon
               small
@@ -103,21 +78,18 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-row align="end" justify="end" class="mt-7">
-      <v-btn color="primary">
-        Suivant
-      </v-btn>
-    </v-row>
   </v-container>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import dataSpecies from '~/data/dataSpecies.json'
 import ModalDisplaySpecieType from '~/components/modals/ModalDisplaySpecieType'
+import InputQuantity from '~/components/inputs/InputQuantity.vue'
 
 export default {
   name: "FormSpecie",
   // eslint-disable-next-line vue/no-unused-components
-  components: {ModalDisplaySpecieType},
+  components: {ModalDisplaySpecieType, InputQuantity},
   data() {
     return {
       tmp: false,
@@ -126,14 +98,10 @@ export default {
       indexShowSpecieType: -1,
       dataSpecies,
       textSearch: '',
-      currentOver: -1,
-      dataSpeciesChecked: [],
+      currentOver: -1
     }
   },
   computed: {
-    payload() {
-      return ''
-    },
     dataSpeciesFiltered() {
       if (!this.textSearch) {
         return this.dataSpecies
@@ -145,7 +113,10 @@ export default {
       })
 
       return result;
-    }
+    },
+    ...mapGetters({
+      speciesQuantity: 'getSpeciesQuantity'
+    })
   },
   methods: {
     updateQuantity(indexSpecie, indexType, quantity) {
