@@ -15,7 +15,10 @@
         </v-btn>
       </v-row>
       <v-row align="end" justify="end" class="mt-7">
-        <v-btn color="primary">
+        <v-btn
+          color="primary"
+          to="/planification"
+        >
           Plannifier
         </v-btn>
       </v-row>

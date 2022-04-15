@@ -10,7 +10,22 @@
             <th>Planches</th>
             <th>Rendement</th>
             <th>CA (€)</th>
-            <th>Surface</th>
+            <th>
+              Surface
+              <v-tooltip left max-width="300px">
+                <template #activator="{ on, attrs }">
+                  <v-icon
+                    class="ml-1"
+                    x-small
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    fa-question-circle
+                  </v-icon>
+                </template>
+                <span>Surface sans maximisation avec la rotation. Une planche n’est occupé que par un seul légume.</span>
+              </v-tooltip>
+            </th>
           </tr>
         </thead>
         <tbody>
