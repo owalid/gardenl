@@ -41,7 +41,8 @@ export const getters = {
                                     month_start_recolte: type.month_start_recolte,
                                     month_end_recolte: type.month_end_recolte,
                                     month_start_semis: type.month_start_semis,
-                                    specie_index: specie.specie_index,
+                                    month_end_semis: type.month_end_semis,
+                                    specie_name: specie.specie_index,
                                     garden: type.garden
                                   })
                                 }
@@ -125,6 +126,7 @@ export const state = () => ({
 export const mutations = {
   setSpeciesSelected(state, species) {
     state.speciesSelected = species
+    this.$cookies.set('speciesSelected', state.speciesSelected)
   },
   updateQuantity(state, {index, quantity}) {
     if (quantity < 0) return ;
@@ -147,5 +149,15 @@ export const mutations = {
       })
     }
     state.speciesSelected = [...copySpeciesSelected]
+    this.$cookies.set('speciesSelected', state.speciesSelected)
+  }
+}
+
+export const actions = {
+  nuxtServerInit({ state }, { req }) {
+    if (req.headers.cookie) {
+      const speciesSelected = this.$cookies.get('speciesSelected')
+      state.speciesSelected = speciesSelected || [];
+    }
   }
 }

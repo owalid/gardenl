@@ -40,7 +40,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    'nuxt-webfontloader'
+    'nuxt-webfontloader',
+    'cookie-universal-nuxt',
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -67,41 +68,41 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
 
-          eggplantsemi: colors.deepPurple.lighten1,
-          eggplantrecolte: colors.deepPurple.lighten4,
+          eggplantsemis: colors.deepPurple.lighten4,
+          eggplantrecolte: colors.deepPurple.lighten1,
 
-          beetsemi: colors.pink.lighten1,
-          beetrecolte: colors.pink.lighten4,
+          beetsemis: colors.pink.lighten4,
+          beetrecolte: colors.pink.lighten1,
 
-          carrotsemi: colors.deepOrange.lighthen1,
-          carrotrecolte: colors.deepOrange.lighten4,
+          carrotsemis: colors.deepOrange.lighten4,
+          carrotrecolte: colors.deepOrange.lighten1,
 
-          celerysemi: colors.lime.lighthen1,
-          celeryrecolte: colors.lime.lighten4,
+          celerysemis: colors.lime.lighten4,
+          celeryrecolte: colors.lime.lighten1,
 
-          zucchinisemi: colors.indigo.lighthen1,
-          zucchinirecolte: colors.indigo.lighten4,
+          zucchinisemis: colors.indigo.lighten4,
+          zucchinirecolte: colors.indigo.lighten1,
 
-          beansemi: colors.brown.lighthen1,
-          beanrecolte: colors.brown.lighten4,
+          beansemis: colors.brown.lighten4,
+          beanrecolte: colors.brown.lighten1,
 
-          lettucesemi: colors.lightGreen.lighthen1,
-          lettucerecolte: colors.lightGreen.lighten4,
+          lettucesemis: colors.lightGreen.lighten4,
+          lettucerecolte: colors.lightGreen.lighten1,
 
-          onionsemi: colors.amber.lighthen1,
-          onionrecolte: colors.amber.lighten4,
+          onionsemis: colors.amber.lighten4,
+          onionrecolte: colors.amber.lighten1,
 
-          leeksemi: colors.cyan.lighthen1,
-          leekrecolte: colors.cyan.lighten4,
+          leeksemis: colors.cyan.lighten4,
+          leekrecolte: colors.cyan.lighten1,
 
-          peasemi: colors.teal.lighthen1,
-          pearecolte: colors.teal.lighten4,
+          peasemis: colors.teal.lighten4,
+          pearecolte: colors.teal.lighten1,
 
-          radishsemi: colors.purple.lighthen1,
-          radishrecolte: colors.purple.lighten4,
+          radishsemis: colors.purple.lighten4,
+          radishrecolte: colors.purple.lighten1,
 
-          tomatosemi: colors.red.lighthen1,
-          tomatorecolte: colors.red.lighten4,
+          tomatosemis: colors.red.lighten4,
+          tomatorecolte: colors.red.lighten1,
 
         }
       }
