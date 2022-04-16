@@ -1,6 +1,7 @@
 [
     {
         "specie": "Aubergine",
+        "specie_index": "eggplant",
         "src_img": "/species_icons/aubergine.svg",
         "types": [
             {
@@ -12,6 +13,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Bache ; Plants ; Serre ; Tuteur",
+                "garden": false,
                 "time_implantation": 3600,
                 "maintenance": "Tuteurage ; Effueillage",
                 "time_maintenance": 3600,
@@ -35,6 +37,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Bache ; Plants ; Serre ; Tuteur",
+                "garden": false,
                 "time_implantation": 3600,
                 "maintenance": "Tuteurage ; Effueillage",
                 "time_maintenance": 3600,
@@ -58,6 +61,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Bache ; Plants ; Serre ; Tuteur",
+                "garden": false,
                 "time_implantation": 3600,
                 "maintenance": "Tuteurage ; Effueillage",
                 "time_maintenance": 3600,
@@ -76,6 +80,7 @@
     },
     {
         "specie": "Betterave",
+        "specie_index": "beet",
         "src_img": "/species_icons/betterave.svg",
         "types": [
             {
@@ -87,6 +92,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": "Eclairciçage",
                 "time_maintenance": 1800,
@@ -110,6 +116,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": "Eclairciçage",
                 "time_maintenance": 1800,
@@ -133,6 +140,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": "Eclairciçage",
                 "time_maintenance": 1800,
@@ -151,6 +159,7 @@
     },
     {
         "specie": "Carotte",
+        "specie_index": "carrot",
         "src_img": "/species_icons/carotte.svg",
         "types": [
             {
@@ -162,6 +171,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": "Eclairciçage",
                 "time_maintenance": 1800,
@@ -185,6 +195,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": "Eclairciçage",
                 "time_maintenance": 1800,
@@ -208,6 +219,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": "Eclairciçage",
                 "time_maintenance": 1800,
@@ -226,6 +238,7 @@
     },
     {
         "specie": "Céleris",
+        "specie_index": "celery",
         "src_img": "/species_icons/celeris.svg",
         "types": [
             {
@@ -237,6 +250,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Plants",
+                "garden": true,
                 "time_implantation": 3600,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -260,6 +274,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Plants",
+                "garden": true,
                 "time_implantation": 3600,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -278,6 +293,7 @@
     },
     {
         "specie": "Courgette",
+        "specie_index": "zucchini",
         "src_img": "/species_icons/courgette.svg",
         "types": [
             {
@@ -289,6 +305,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Bache ; Plants",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -312,6 +329,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Bache ; Plants",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -335,6 +353,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Bache ; Plants",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -353,6 +372,7 @@
     },
     {
         "specie": "Haricot",
+        "specie_index": "bean",
         "src_img": "/species_icons/haricot.svg",
         "types": [
             {
@@ -364,6 +384,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 1200,
                 "implantation": "Semis ; Tuteur",
+                "garden": true,
                 "time_implantation": 3600,
                 "maintenance": "Palisser ; butter",
                 "time_maintenance": 1800,
@@ -387,6 +408,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 1200,
                 "implantation": "Semis ; Tuteur",
+                "garden": true,
                 "time_implantation": 3600,
                 "maintenance": "Palisser ; butter",
                 "time_maintenance": 1800,
@@ -410,6 +432,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 1200,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 1200,
                 "maintenance": "Butter",
                 "time_maintenance": 900,
@@ -428,6 +451,7 @@
     },
     {
         "specie": "Laitue",
+        "specie_index": "lettuce",
         "src_img": "/species_icons/laitue.svg",
         "types": [
             {
@@ -439,6 +463,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Bache ; Plants",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -462,6 +487,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Bache ; Plants",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -485,6 +511,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Bache ; Plants",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -503,6 +530,7 @@
     },
     {
         "specie": "Oignon",
+        "specie_index": "onion",
         "src_img": "/species_icons/oignon.svg",
         "types": [
             {
@@ -514,6 +542,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 900,
                 "implantation": "Bache ; Plants",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -537,6 +566,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 900,
                 "implantation": "Bache ; Plants",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -560,6 +590,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 900,
                 "implantation": "Bache ; Plants",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -578,6 +609,7 @@
     },
     {
         "specie": "Poireau",
+        "specie_index": "leek",
         "src_img": "/species_icons/poireau.svg",
         "types": [
             {
@@ -589,6 +621,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 600,
                 "implantation": "Plants",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": "Butter",
                 "time_maintenance": 900,
@@ -612,6 +645,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 600,
                 "implantation": "Plants",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": "Butter",
                 "time_maintenance": 900,
@@ -635,6 +669,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 600,
                 "implantation": "Plants",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": "Butter",
                 "time_maintenance": 900,
@@ -653,6 +688,7 @@
     },
     {
         "specie": "Pois",
+        "specie_index": "pea",
         "src_img": "/species_icons/pois.svg",
         "types": [
             {
@@ -664,6 +700,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Semis ; Tuteur",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": "Palisser ; butter",
                 "time_maintenance": 1800,
@@ -687,6 +724,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 600,
                 "maintenance": "Butter",
                 "time_maintenance": 900,
@@ -710,6 +748,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Semis ; Tuteur",
+                "garden": true,
                 "time_implantation": 2400,
                 "maintenance": "Palisser ; butter",
                 "time_maintenance": 1800,
@@ -728,6 +767,7 @@
     },
     {
         "specie": "Radis",
+        "specie_index": "radish",
         "src_img": "/species_icons/radis.svg",
         "types": [
             {
@@ -739,6 +779,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -762,6 +803,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -785,6 +827,7 @@
                 "time_preparation": 2700,
                 "time_fertilization": 600,
                 "implantation": "Semis",
+                "garden": true,
                 "time_implantation": 1800,
                 "maintenance": null,
                 "time_maintenance": null,
@@ -803,6 +846,7 @@
     },
     {
         "specie": "Tomate",
+        "specie_index": "tomato",
         "src_img": "/species_icons/tomate.svg",
         "types": [
             {
@@ -814,6 +858,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Bache ; Plants ; Serre ; Tuteur",
+                "garden": false,
                 "time_implantation": 1800,
                 "maintenance": "Tuteurage ; Effeuillage ; Gourmants",
                 "time_maintenance": 7200,
@@ -837,6 +882,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Bache ; Plants ; Serre ; Tuteur",
+                "garden": false,
                 "time_implantation": 1800,
                 "maintenance": "Tuteurage ; Effeuillage ; Gourmants",
                 "time_maintenance": 7200,
@@ -860,6 +906,7 @@
                 "time_preparation": 1800,
                 "time_fertilization": 1200,
                 "implantation": "Bache ; Plants ; Serre ; Tuteur",
+                "garden": false,
                 "time_implantation": 1800,
                 "maintenance": "Tuteurage ; Effeuillage ; Gourmants",
                 "time_maintenance": 7200,

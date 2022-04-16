@@ -6,14 +6,14 @@ const line_semis = '.ligne-semis > td'
 const line_recolte = '.ligne-recolte > td'
 
 const getMonthStartEndSemis = (elmts) => {
-  const month_start_semis = `${elmts.findIndex(elmt => elmt._remoteObject.description === 'td.debut-semis') + 1}`.padStart(2, '0');
-  const month_end_semis = `${elmts.findIndex(elmt => elmt._remoteObject.description === 'td.fin-semis') + 1}`.padStart(2, '0');
+  const month_start_semis = `${elmts.findIndex(elmt => elmt._remoteObject.description === 'td.debut-semis') + 1}`;
+  const month_end_semis = `${elmts.findIndex(elmt => elmt._remoteObject.description === 'td.fin-semis') + 1}`;
   return { month_start_semis, month_end_semis };
 }
 
 const getMonthStartEndRecolte = (elmts) => {
-  const month_start_recolte = `${elmts.findIndex(elmt => elmt._remoteObject.description === 'td.debut-recolte') + 1}`.padStart(2, '0');
-  const month_end_recolte = `${elmts.findIndex(elmt => elmt._remoteObject.description === 'td.fin-recolte') + 1}`.padStart(2, '0');
+  const month_start_recolte = `${elmts.findIndex(elmt => elmt._remoteObject.description === 'td.debut-recolte') + 1}`;
+  const month_end_recolte = `${elmts.findIndex(elmt => elmt._remoteObject.description === 'td.fin-recolte') + 1}`;
   return { month_start_recolte, month_end_recolte };
 }
 

@@ -1,8 +1,75 @@
 import dataSpecies from '~/data/dataSpecies.json';
 
+
 export const getters = {
-  getPlanificationRaw(state) {
-    return ''
+  getPlanificationRaw(state, getters) {
+    /*
+      return object of array[n] of array[3] of objects
+      n is size number of gardens or greenhouses
+      3 is size of plank
+
+      Example:
+      {
+        gardens: [ (size n)
+          [ // plank 1 (size 3)
+            {
+              specie: '',
+            }
+            {
+              specie: '',
+            }
+          ]
+        ],
+        greenhouse: []
+      }
+    */
+   
+    const res = {
+      gardens: [],
+      greenhouse: []
+    }
+    dataSpecies
+        // filter by selected specie and get minimal data
+        .map(specie => specie.types
+                              .filter(type => state.speciesSelected.find(specieSelected => specieSelected.index === type.index))
+                              .map(type => {
+                                const result = []
+                                const {quantity} = state.speciesSelected.find(specieSelected => specieSelected.index === type.index)
+                                for (let i=0; i < quantity; i++) {
+                                  result.push({
+                                    index: type.index,
+                                    month_start_recolte: type.month_start_recolte,
+                                    month_end_recolte: type.month_end_recolte,
+                                    month_start_semis: type.month_start_semis,
+                                    specie_index: specie.specie_index,
+                                    garden: type.garden
+                                  })
+                                }
+                                return result;
+                              }))
+        .filter(types => types.length > 0)
+        .map(types => {
+          // dispatch for each array inside types by maximum 3 elements by array
+          const result = []
+          types.forEach((type, indexType) => {
+            result[indexType] = []
+            let i = 0
+            while (i < type.length) {
+              result[indexType].push(type.slice(i, i+3))
+              i += 3
+            }
+          })
+          return result.flat()
+        }).flat()
+        .forEach(plank => {
+          // dispatch between garden and greenhouse
+          if (plank[0].garden) {
+            res.gardens.push(plank)
+          } else {
+            res.greenhouse.push(plank)
+          }
+        })
+    return res
   },
   getPlanificationOptimized(state) {
     return ''

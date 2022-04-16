@@ -83,6 +83,7 @@ const main = () => {
         time_preparation: values_data_agrihack[6],
         time_fertilization: values_data_agrihack[8],
         implantation: values_data_agrihack[9],
+        garden: !values_data_agrihack[9].includes('Serre'),
         time_implantation: values_data_agrihack[10],
         maintenance: values_data_agrihack[11],
         time_maintenance: values_data_agrihack[12],
