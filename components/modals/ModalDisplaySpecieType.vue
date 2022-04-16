@@ -55,7 +55,7 @@
               <p>Fertilisation</p>
             </v-row>
             <v-row justify="center">
-              {{ dataSpecieType.fertilization }}
+              {{ dataSpecieType.fertilization_label }}
             </v-row>
           </v-col>
           <v-col>

@@ -8,13 +8,16 @@ const line_recolte = '.ligne-recolte > td'
 const getMonthStartEndSemis = (elmts) => {
   const month_start_semis = elmts.findIndex(elmt => elmt._remoteObject.description === 'td.debut-semis') + 1;
   const month_end_semis = elmts.findIndex(elmt => elmt._remoteObject.description === 'td.fin-semis') + 1;
-  return { month_start_semis, month_end_semis };
+  const delta_semis = month_end_semis - month_start_semis;
+  return { month_start_semis, month_end_semis, delta_semis };
 }
 
 const getMonthStartEndRecolte = (elmts) => {
   const month_start_recolte = elmts.findIndex(elmt => elmt._remoteObject.description === 'td.debut-recolte') + 1;
   const month_end_recolte = elmts.findIndex(elmt => elmt._remoteObject.description === 'td.fin-recolte') + 1;
-  return { month_start_recolte, month_end_recolte };
+  const delta_recolte = month_end_recolte - month_start_recolte;
+  
+  return { month_start_recolte, month_end_recolte, delta_recolte };
 }
 
 const main = async () => {

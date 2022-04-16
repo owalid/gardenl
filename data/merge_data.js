@@ -69,6 +69,12 @@ const it_durations = [
   6.897297297,
 ]
 
+const tableFertilisation = {
+  'Forte': 'high',
+  "Moyenne": 'medium',
+  'Faible': 'low'
+}
+
 const main = () => {
   const final_result = [...base_species]
   let i = 0
@@ -95,6 +101,7 @@ const main = () => {
         packaging: values_data_agrihack[22],
         yield_by_plank: parseFloat(values_data_agrihack[24].replace(',', '.')),
         it_duration: it_durations[indexSpecie],
+        fertilization: tableFertilisation[values_data_agrihack[7]],
         quantity: 0,
         index: i
       }

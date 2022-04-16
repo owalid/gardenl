@@ -8,8 +8,13 @@
           v-for="(implantations, indexPlanification) in planificationRaw"
           :key="indexPlanification"
           class="pa-0 ma-0"
-          :class="[{'mt-10': indexPlanification === Object.keys(planificationRaw).at(-1)}]"
         >
+          <!-- :class="[
+            {
+              'mt-10': Object.keys(planificationRaw).length > 1 && indexPlanification === Object.keys(planificationRaw).at(-1),
+              'border-top': Object.keys(planificationRaw).length > 1 && indexPlanification === Object.keys(planificationRaw).at(-1)
+            }
+          ]" -->
 
           <v-row v-for="(implantation, indexImplantation) in implantations" :key="indexImplantation" class="implantation-border">
               <v-col
@@ -118,5 +123,9 @@ export default {
   border-top: 1px solid rgba(0, 0, 0, 0.199);
   border-bottom: 1px solid rgba(0, 0, 0, 0.199);
   z-index: 1;
+}
+
+.border-top {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.199);
 }
 </style>
