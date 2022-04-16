@@ -43,7 +43,8 @@ export const getters = {
                                     month_start_semis: type.month_start_semis,
                                     month_end_semis: type.month_end_semis,
                                     specie_name: specie.specie_index,
-                                    garden: type.garden
+                                    garden: type.garden,
+                                    uuid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
                                   })
                                 }
                                 return result;
