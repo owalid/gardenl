@@ -71,7 +71,7 @@ const it_durations = [
 
 const tableFertilisation = {
   'Forte': 'high',
-  "Moyenne": 'medium',
+  "Moyen": 'medium',
   'Faible': 'low'
 }
 

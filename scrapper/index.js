@@ -16,7 +16,7 @@ const getMonthStartEndRecolte = (elmts) => {
   const month_start_recolte = elmts.findIndex(elmt => elmt._remoteObject.description === 'td.debut-recolte') + 1;
   const month_end_recolte = elmts.findIndex(elmt => elmt._remoteObject.description === 'td.fin-recolte') + 1;
   const delta_recolte = month_end_recolte - month_start_recolte;
-  
+
   return { month_start_recolte, month_end_recolte, delta_recolte };
 }
 
@@ -65,10 +65,15 @@ const main = async () => {
       elmts_recolte.shift()
       const start_end_months_recolte = getMonthStartEndRecolte(elmts_recolte)
 
+      const delta_semis_recolte = start_end_months_recolte.month_end_recolte - start_end_months_semis.month_start_semis;
+      const time_semis_to_recolte = start_end_months_recolte.month_start_recolte - start_end_months_semis.month_start_semis;
+
       final_results[index_specie].types[index_type] = {
         ...final_results[index_specie].types[index_type],
         ...start_end_months_semis,
         ...start_end_months_recolte,
+        delta_semis_recolte,
+        time_semis_to_recolte,
         src_img,
         complete_name,
         description,

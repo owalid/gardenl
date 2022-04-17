@@ -1,5 +1,38 @@
+/* eslint-disable no-console */
 import dataSpecies from '~/data/dataSpecies.json';
 
+const inRange = (value, min, max) => value >= min && value <= max;
+const getRangeArray = (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i);
+
+const generateNewSolutionsPosition = (solutions, candidatSpecie, currentSpecie, before) => {
+  // determine the smallest window to place currentSpecie in candidatSpecie
+
+  const deltaMonthBetweenQuandiadateAndCurrent = getRangeArray(candidatSpecie.month_end_semis, currentSpecie.month_end_recolte);
+  
+  for (let i = 0; i <= deltaMonthBetweenQuandiadateAndCurrent.length; i++) {
+    for (let j; j <= 4; j++) {
+      const candidateSolution = candidatSpecie;
+      const newSpecieSolution = currentSpecie;
+      if (before) {
+        candidateSolution.week_recolte += i
+        candidateSolution.week_semis += i
+        candidateSolution.month_recolte += j
+        candidateSolution.month_semis += j
+      } else {
+        candidateSolution.week_recolte = Math.abs(candidateSolution.week_recolte - i)
+        candidateSolution.week_semis = Math.abs(candidateSolution.week_semis - i)
+        candidateSolution.month_recolte += j
+        candidateSolution.month_semis += j
+      }
+
+      solutions.push({
+        newCandidateSpecie: candidateSolution,
+        newSpecie: newSpecieSolution
+      })
+    }
+  }
+  return solutions
+}
 
 export const getters = {
   getPlanificationRaw(state, getters) {
@@ -59,10 +92,12 @@ export const getters = {
                                     specie_name: specie.specie_index,
                                     garden: type.garden,
                                     fertilization: type.fertilization,
+                                    delta_semis: type.delta_semis,
+                                    delta_recolte: type.delta_recolte,
+                                    time_semis_to_recolte: type.time_semis_to_recolte,
                                     uuid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
                                   })
                                 }
-                                console.log("result", result);
                                 return result;
                               }))
         .filter(types => types.length > 0)
@@ -148,7 +183,7 @@ export const getters = {
         Alterner fertilisation forte puis moyenne puis faible
         Une fertilisation forte peut suivre une fertilisation faible
     */
-
+    
     const ruleFertilization = {
       high: {
         index: 0,
@@ -197,41 +232,117 @@ export const getters = {
           return acc;
         }, [])
         if (indexesGardens.length > 0) { // If result is not empty
-          // Try too add in plank, with good week's recolte and semis
-          const finalResult = {
-            index_garden: -1,
-            specie: currentSpecie
-          }
+          // Try to add in plank, with good week's recolte and semis
+          const finalResult = { index_garden: -1, specie: currentSpecie }
           for (let i = 0; i < indexesGardens.length; i++) {
-            const currentGardens = resultGardens[indexesGardens[i]]
-            const res = currentGardens.find(quandidateSpecie => {
+            const currentPlank = resultGardens[indexesGardens[i]]
+
+
+          /*
+            Two loops must be made:
+            - One that generates all solutions by confronting a candidate and a place (1)
+            - One that validates solutions (2)
+            If the last loop validates according to the species which is before or after where we wish to add the place then we add the species by adjusting the months and weeks of the other species otherwise we pass to the following candidate.
+          */ 
+            const res = currentPlank.find((candidatSpecie, indexQuandidate) => { // (1)
               let found = false
+              let isBefore = false
+              let canInsert = false
+              let isValidate = false
+              let solutions = []
+
               // Know if there are some place for currentSpecie (week's recolte and semis)
-              const canSemisAndRecolteBefore = (
-                currentSpecie.month_semis < quandidateSpecie.month_semis &&
-                currentSpecie.month_recolte < quandidateSpecie.month_semis
-              )
-
-              const canSemisAndRecolteAfter = (
-                currentSpecie.month_semis > quandidateSpecie.month_recolte &&
-                currentSpecie.month_recolte > quandidateSpecie.month_recolte
-              )
+              // if there is a place for a species in the board it is before sowing or after harvesting or its harvesting is during sowing or its sowing is during harvesting
+              // here it is necessary to make evolve the species of the currentPlank in the case where we can put the species in the plate (according to the months and then to the week)
+              if (currentSpecie.month_semis < candidatSpecie.month_semis && currentSpecie.month_recolte < candidatSpecie.month_semis) { // if before all            
+                console.log('before all')
+                isBefore = true
+                canInsert = true
+                solutions.push(
+                  {
+                    newCandidateSpecie: candidatSpecie,
+                    newSpecie: currentSpecie
+                  }
+                )
+              } 
+              if (
+                (inRange(currentSpecie.month_start_semis, candidatSpecie.month_end_semis, candidatSpecie.month_end_semis)
+                  && inRange(currentSpecie.month_start_recolte, candidatSpecie.month_end_recolte, candidatSpecie.month_end_semis))
+                || (currentSpecie.month_start_semis < candidatSpecie.month_start_semis
+                    && inRange(currentSpecie.month_end_semis, candidatSpecie.month_start_semis, candidatSpecie.month_end_semis))
+                ) { // all or partly is in range semis
+                  
+                  console.log('all is in range semis')
+                  solutions = [...generateNewSolutionsPosition(solutions, candidatSpecie, currentSpecie, true)]
+                  isBefore = true
+                  canInsert = true
+              } 
+              if (currentSpecie.month_semis > candidatSpecie.month_recolte && currentSpecie.month_recolte > candidatSpecie.month_recolte) { // if after all
+                canInsert = true
+                solutions.push(
+                  {
+                    newCandidateSpecie: candidatSpecie,
+                    newSpecie: currentSpecie
+                  }
+                )
+              } 
+              if (
+                (inRange(currentSpecie.month_start_semis, candidatSpecie.month_end_recolte, candidatSpecie.month_end_recolte)
+                  && inRange(currentSpecie.month_start_recolte, candidatSpecie.month_end_recolte, candidatSpecie.month_end_recolte))
+                || (inRange(currentSpecie.month_end_semis, candidatSpecie.month_start_recolte, candidatSpecie.month_end_recolte) &&
+                    currentSpecie.month_start_recolte > candidatSpecie.month_end_recolte)
+                ) { // all or partly is in range recolte
+                  console.log('all is in range recolte')
+                  solutions = [...generateNewSolutionsPosition(solutions, candidatSpecie, currentSpecie, false)]
+              } 
               
-              if (canSemisAndRecolteBefore || canSemisAndRecolteAfter) {
-                // Know if we can add with this fertilisation's order high, medium, low occording currentSpecie.fertilisation
-                const ruleCurrentFertilization = ruleFertilization[currentSpecie.fertilization];
-                console.log("currentSpecie", currentSpecie)
-                const indexMatchWithCurrent = (canSemisAndRecolteBefore) ? 0 : 1
-                const ruleQuanditateFertilization = ruleFertilization[quandidateSpecie.fertilization];
-                console.log("quandidateSpecie", quandidateSpecie)
+              if (canInsert) {
+                currentPlank.forEach(specieToValidate => { // (2)
+                  if (specieToValidate.uuid !== candidatSpecie.uuid) {
 
-                const canFertilisation = (
-                  ruleCurrentFertilization.match_with[indexMatchWithCurrent] === ruleQuanditateFertilization.index
-                );
+                    solutions = solutions.filter(({newSpecie, newCandidateSpecie}) => {
+
+                      const rangeSpecieSolution = getRangeArray(newSpecie.month_semis, newSpecie.month_recolte)
+                      const rangeCandidateSolution = getRangeArray(newCandidateSpecie.month_semis, newCandidateSpecie.month_recolte)
+                      
+                      const recolteSpecieToValidateIsInRangeQuandidate = rangeCandidateSolution.includes(specieToValidate.month_recolte) 
+                      const isValidrecolteSpecieToValidateQuandidate = !recolteSpecieToValidateIsInRangeQuandidate || (recolteSpecieToValidateIsInRangeQuandidate && newSpecie.week_recolte !== specieToValidate.week_recolte)
+
+                      const semisSpecieToValidateIsInRangeQuandidate = rangeCandidateSolution.includes(specieToValidate.month_semis) 
+                      const isValidsemisSpecieToValidateQuandidate = !semisSpecieToValidateIsInRangeQuandidate || (semisSpecieToValidateIsInRangeQuandidate && newSpecie.week_semis !== specieToValidate.week_semis)
+
+                      const recolteSpecieToValidateIsInRangeSpecie = rangeSpecieSolution.includes(specieToValidate.month_recolte) 
+                      const isValidrecolteSpecieToValidateSpecie = !recolteSpecieToValidateIsInRangeSpecie || (recolteSpecieToValidateIsInRangeSpecie && newCandidateSpecie.week_recolte !== specieToValidate.week_recolte)
+
+                      const semisSpecieToValidateIsInRangeSpecie = rangeSpecieSolution.includes(specieToValidate.month_semis) 
+                      const isValidsemisSpecieToValidateSpecie = !semisSpecieToValidateIsInRangeSpecie || (semisSpecieToValidateIsInRangeSpecie && newCandidateSpecie.week_semis !== specieToValidate.week_semis)
+
+
+                      return (
+                        isValidrecolteSpecieToValidateQuandidate
+                         && isValidsemisSpecieToValidateQuandidate
+                         && isValidrecolteSpecieToValidateSpecie
+                         && isValidsemisSpecieToValidateSpecie
+                      )
+                    })
+                  }
+                })
+                isValidate = solutions.length > 0
+              }
+
+              if (isValidate) {
+                // Know if we can add with this fertilisation's order high, medium, low occording currentSpecie.fertilisation
+                console.log('solutions', solutions)
+                const solution = solutions[0]
+                const ruleCurrentFertilization = ruleFertilization[solution.newSpecie.fertilization];
+                const indexMatchWithCurrent = (isBefore) ? 0 : 1
+                const ruleQuanditateFertilization = ruleFertilization[solution.newCandidateSpecie.fertilization];
+
+                const canFertilisation = ruleCurrentFertilization.match_with[indexMatchWithCurrent] === ruleQuanditateFertilization.index;
                 if (canFertilisation) {
                   found = true;
-                  // found good week and month for recolte and semis
-                  finalResult.index_garden = indexesGardens[i] 
+                  finalResult.index_garden = indexesGardens[i]
+                  resultGardens[indexesGardens[i]][indexQuandidate] = solution.newCandidateSpecie;
                 }
               }
               return found

@@ -574,6 +574,7 @@
                 "packaging": "Séchage 25° Stockage 6-10° au sec",
                 "yield_by_plank": 112.48,
                 "it_duration": 4.728142077,
+                "fertilization": "medium",
                 "quantity": 0,
                 "index": 20
             },
@@ -598,6 +599,7 @@
                 "packaging": "Séchage 25° Stockage 6-10° au sec",
                 "yield_by_plank": 112.48,
                 "it_duration": 4.728142077,
+                "fertilization": "medium",
                 "quantity": 0,
                 "index": 21
             },
@@ -622,6 +624,7 @@
                 "packaging": "Séchage 25° Stockage 6-10° au sec",
                 "yield_by_plank": 112.48,
                 "it_duration": 4.728142077,
+                "fertilization": "medium",
                 "quantity": 0,
                 "index": 22
             }
