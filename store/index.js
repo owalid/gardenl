@@ -10,7 +10,7 @@ const generateNewSolutionsPosition = (solutions, candidatSpecie, currentSpecie, 
   const deltaMonthBetweenQuandiadateAndCurrent = getRangeArray(candidatSpecie.month_end_semis, currentSpecie.month_end_recolte);
   
   for (let i = 0; i <= deltaMonthBetweenQuandiadateAndCurrent.length; i++) {
-    for (let j; j <= 4; j++) {
+    for (let j = 1; j <= 4; j++) {
       const candidateSolution = candidatSpecie;
       const newSpecieSolution = currentSpecie;
       if (before) {
@@ -200,7 +200,7 @@ export const getters = {
     }
     const planificationRaw = getters.getPlanificationRaw
     let gardens = []
-    const resultGardens = []
+    let resultGardens = []
     let greenhouse = []
 
     if ('gardens' in planificationRaw) {
@@ -213,17 +213,24 @@ export const getters = {
     gardens = gardens.reduce((flat, toFlatten) => flat.concat(toFlatten), [])
 
     gardens.forEach(currentSpecie => {
+      currentSpecie = {
+        ...currentSpecie,
+        week_recolte: 1,
+        week_semis: 1,
+        month_recolte: currentSpecie.month_start_recolte,
+        month_semis: currentSpecie.month_start_semis
+      }
       if (resultGardens.length === 0) { // If resultGardens is empty, we add a new array inside
         resultGardens.push([currentSpecie])
       } else { // Else try to add in existing plank
         // generate week_start_recolte and week_end_recolte, week_start_semis and week_end_semis at 0 in currentSpecie
-        currentSpecie = {
-          ...currentSpecie,
-          week_recolte: 0,
-          week_semis: 0,
-          month_recolte: currentSpecie.month_start_recolte,
-          month_semis: currentSpecie.month_start_semis
-        }
+        // currentSpecie = {
+        //   ...currentSpecie,
+        //   week_recolte: 0,
+        //   week_semis: 0,
+        //   month_recolte: currentSpecie.month_start_recolte,
+        //   month_semis: currentSpecie.month_start_semis
+        // }
         // Get planks who not have same specie than currentSpecie
         const indexesGardens = resultGardens.reduce((acc, elmt, index) => {
           if (elmt.find(specie => specie.specie_name !== currentSpecie.specie_name)) {
@@ -332,7 +339,6 @@ export const getters = {
 
               if (isValidate) {
                 // Know if we can add with this fertilisation's order high, medium, low occording currentSpecie.fertilisation
-                console.log('solutions', solutions)
                 const solution = solutions[0]
                 const ruleCurrentFertilization = ruleFertilization[solution.newSpecie.fertilization];
                 const indexMatchWithCurrent = (isBefore) ? 0 : 1
@@ -369,7 +375,17 @@ export const getters = {
     });
     greenhouse = greenhouse.reduce((flat, toFlatten) => flat.concat(toFlatten), [])
 
-    return {resultGardens, greenhouse}
+    resultGardens = [resultGardens]
+
+    const finalResultGardens = []
+    resultGardens.forEach((species) => {
+      let i = 0
+      while (i < species.length) {
+        finalResultGardens.push(species.slice(i, i+3))
+        i += 3
+      }
+    })
+    return {gardens: finalResultGardens, greenhouse}
   },
   getSpeciesQuantity(state) {
     return dataSpecies.map((specie, indexSpecie) => 

@@ -68,41 +68,41 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
 
-          eggplantsemis: colors.deepPurple.lighten4,
-          eggplantrecolte: colors.deepPurple.lighten1,
+          eggplantsemis: colors.deepPurple.lighten1,
+          eggplantrecolte: colors.deepPurple.lighten4,
 
-          beetsemis: colors.pink.lighten4,
-          beetrecolte: colors.pink.lighten1,
+          beetsemis: colors.pink.lighten1,
+          beetrecolte: colors.pink.lighten4,
 
-          carrotsemis: colors.deepOrange.lighten4,
-          carrotrecolte: colors.deepOrange.lighten1,
+          carrotsemis: colors.deepOrange.lighten1,
+          carrotrecolte: colors.deepOrange.lighten4,
 
-          celerysemis: colors.lime.lighten4,
-          celeryrecolte: colors.lime.lighten1,
+          celerysemis: colors.lime.lighten1,
+          celeryrecolte: colors.lime.lighten4,
 
-          zucchinisemis: colors.indigo.lighten4,
-          zucchinirecolte: colors.indigo.lighten1,
+          zucchinisemis: colors.indigo.lighten1,
+          zucchinirecolte: colors.indigo.lighten4,
 
-          beansemis: colors.brown.lighten4,
-          beanrecolte: colors.brown.lighten1,
+          beansemis: colors.brown.lighten1,
+          beanrecolte: colors.brown.lighten4,
 
-          lettucesemis: colors.lightGreen.lighten4,
-          lettucerecolte: colors.lightGreen.lighten1,
+          lettucesemis: colors.lightGreen.lighten1,
+          lettucerecolte: colors.lightGreen.lighten4,
 
-          onionsemis: colors.amber.lighten4,
-          onionrecolte: colors.amber.lighten1,
+          onionsemis: colors.amber.lighten1,
+          onionrecolte: colors.amber.lighten4,
 
-          leeksemis: colors.cyan.lighten4,
-          leekrecolte: colors.cyan.lighten1,
+          leeksemis: colors.cyan.lighten1,
+          leekrecolte: colors.cyan.lighten4,
 
-          peasemis: colors.teal.lighten4,
-          pearecolte: colors.teal.lighten1,
+          peasemis: colors.teal.lighten1,
+          pearecolte: colors.teal.lighten4,
 
-          radishsemis: colors.purple.lighten4,
-          radishrecolte: colors.purple.lighten1,
+          radishsemis: colors.purple.lighten1,
+          radishrecolte: colors.purple.lighten4,
 
-          tomatosemis: colors.red.lighten4,
-          tomatorecolte: colors.red.lighten1,
+          tomatosemis: colors.red.lighten1,
+          tomatorecolte: colors.red.lighten4,
 
         }
       }

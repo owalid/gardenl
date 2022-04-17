@@ -5,7 +5,7 @@
           {{month}}
         </v-row>
         <div
-          v-for="(implantations, indexPlanification) in planificationRaw"
+          v-for="(implantations, indexPlanification) in planificationOptimized"
           :key="indexPlanification"
           class="pa-0 ma-0"
         >
@@ -47,7 +47,7 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "CalendarPlanificationRaw",
+  name: "CalendarPlanificationOptimized",
    data() {
     return {
       months: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -57,30 +57,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-      planificationRaw: 'getPlanificationRaw',
       planificationOptimized: 'getPlanificationOptimized'
     })
   },
   methods: {
-    deleteColumnLeftBorder(plank, indexMonth, week) {
-      if ((this.isSemis(plank, indexMonth) && !this.isFirstWeekSemis(plank, indexMonth)) || (this.isRecolte(plank, indexMonth) && !this.isFirstMonthRecolte(plank, indexMonth))) {
-       this.$nextTick(() => {
-          const elmt = this.$refs[`plank-${plank.uuid}-${week}-${indexMonth-1}`][0];
-          elmt.parentNode.classList.remove('column-border')
-        })
-      }
+    isRecolte(plank, indexMonth, week) {
+      return plank.month_recolte === indexMonth && (plank.week_recolte === week || plank.week_recolte + 1 === week);
     },
-    isFirstMonthRecolte(plank, indexMonth, week) {
-      return indexMonth === plank.month_start_recolte && week === 0;
-    },
-    isFirstWeekSemis(plank, indexMonth, week) {
-      return indexMonth === plank.month_start_semis && week === 0;
-    },
-    isRecolte(plank, indexMonth) {
-      return plank.month_start_recolte <= indexMonth && plank.month_end_recolte >= indexMonth
-    },
-    isSemis(plank, indexMonth) {
-      return plank.month_start_semis <= indexMonth && plank.month_end_semis >= indexMonth
+    isSemis(plank, indexMonth, week) {
+      return plank.month_semis === indexMonth && (plank.week_semis === week || plank.week_semis + 1 === week);
     },
     nextWeekShouldBeColored(plank, indexMonth) {
       indexMonth += 2;
@@ -88,14 +73,16 @@ export default {
     },
     getColorWeek(plank, indexMonth, week) {
       indexMonth++;
-      this.deleteColumnLeftBorder(plank, indexMonth, week);
-      // semis
-      if (this.isSemis(plank, indexMonth)) {
-        return `${plank.specie_name}semis`;
-      }
-      // recolte
-      if (this.isRecolte(plank, indexMonth)) {
-        return `${plank.specie_name}recolte`;
+      const specie = plank.filter(plank => plank.month_semis === indexMonth || plank.month_recolte === indexMonth)[0];
+      if (specie) {
+        // semis
+        if (this.isSemis(specie, indexMonth, week)) {
+          return `${specie.specie_name}semis`;
+        }
+        // recolte
+        if (this.isRecolte(specie, indexMonth, week)) {
+          return `${specie.specie_name}recolte`;
+        }
       }
       return ''
     }
