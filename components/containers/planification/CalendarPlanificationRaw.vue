@@ -36,12 +36,32 @@
                   class="pa-0 ma-0 mb-1"
                 >
                   <!-- :class="{'row-border': nextWeekShouldBeColored(plank, indexMonth)}" -->
-                  <v-sheet
-                    :color="getColorWeek(plank, indexMonth, week)"
-                    elevation="0"
-                    height="30"
-                    width="100%"
-                  ></v-sheet>
+                  <v-tooltip
+                    left
+                    max-width="500px"
+                    :disabled="!isSemis(plank, indexMonth+1) && week !== 1"
+                  >
+                      <template #activator="{ on, attrs }">
+                        <v-sheet
+                          :color="getColorWeek(plank, indexMonth, week)"
+                          elevation="0"
+                          height="30"
+                          width="100%"
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
+                            <v-img
+                              v-if="isFirstWeekSemis(plank, indexMonth+1, week)"
+                              :src="`/species_icons/${plank.specie_name}.svg`"
+                              class="img-species"
+                              contain
+                            />
+                          </div>
+                        </v-sheet>
+                      </template>
+                      <pre v-if="isFirstWeekSemis(plank, indexMonth+1, week)">{{ plank.complete_name }}</pre>
+                   </v-tooltip>
                 </v-row>
               </v-col>
           </v-row>
@@ -63,7 +83,7 @@ export default {
   },
   methods: {
     deleteColumnLeftBorder(plank, indexMonth, week) {
-      if ((this.isSemis(plank, indexMonth) && !this.isFirstWeekSemis(plank, indexMonth)) || (this.isRecolte(plank, indexMonth) && !this.isFirstMonthRecolte(plank, indexMonth))) {
+      if ((this.isSemis(plank, indexMonth) && !this.isFirstWeekSemis(plank, indexMonth, week)) || (this.isRecolte(plank, indexMonth) && !this.isFirstMonthRecolte(plank, indexMonth, week))) {
        this.$nextTick(() => {
           const elmt = this.$refs[`plank-${plank.uuid}-${week}-${indexMonth-1}`][0];
           elmt.parentNode.classList.remove('column-border')
@@ -71,10 +91,10 @@ export default {
       }
     },
     isFirstMonthRecolte(plank, indexMonth, week) {
-      return indexMonth === plank.month_start_recolte && week === 0;
+      return indexMonth === plank.month_start_recolte && week === 1;
     },
     isFirstWeekSemis(plank, indexMonth, week) {
-      return indexMonth === plank.month_start_semis && week === 0;
+      return indexMonth === plank.month_start_semis && week === 1;
     },
     isRecolte(plank, indexMonth) {
       return plank.month_start_recolte <= indexMonth && plank.month_end_recolte >= indexMonth
@@ -135,5 +155,9 @@ export default {
 
 .border-top {
   border-bottom: 1px solid rgba(0, 0, 0, 0.199);
+}
+.img-species {
+  width: 20px;
+  height: 20px;
 }
 </style>

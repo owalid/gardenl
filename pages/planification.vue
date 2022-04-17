@@ -1,10 +1,5 @@
 <template>
   <v-container fluid>
-    <v-row justify="center" class="my-8">
-      <h1 class="primary--text">
-        Planification des cultures sans succession
-      </h1>
-    </v-row>
     <!-- <v-row justify="center"> -->
     <planification-container />
     <!-- </v-row> -->

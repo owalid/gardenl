@@ -1,5 +1,10 @@
 <template>
   <div>
+    <v-row justify="center" class="my-8">
+      <h1 class="primary--text">
+        Planification des cultures {{ (activatedOptimisation) ? 'avec' : 'sans'}} succession
+      </h1>
+    </v-row>
     <v-row justify="end" class="mr-10">
       <v-switch
         v-model="activatedOptimisation"

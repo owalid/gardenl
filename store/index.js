@@ -95,6 +95,7 @@ export const getters = {
                                     delta_semis: type.delta_semis,
                                     delta_recolte: type.delta_recolte,
                                     time_semis_to_recolte: type.time_semis_to_recolte,
+                                    complete_name: type.complete_name,
                                     uuid: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
                                   })
                                 }

@@ -36,21 +36,32 @@
                   class="pa-0 ma-0 mb-1"
                 >
                   <!-- :class="{'row-border': nextWeekShouldBeColored(plank, indexMonth)}" -->
-                  <v-sheet
-                    :color="getColorWeek(plank, indexMonth, week)"
-                    elevation="0"
-                    height="30"
-                    width="100%"
-                  >
-                    <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
-                      <v-img
-                        v-if="week === 1 && getColorWeek(plank, indexMonth, week).split('semis').length > 1"
-                        :src="`/species_icons/${getColorWeek(plank, indexMonth, week).split('semis')[0]}.svg`"
-                        class="img-species"
-                        contain
-                      />
-                    </div>
-                  </v-sheet>
+                   <v-tooltip
+                      left
+                      max-width="500px"
+                      :disabled="getCurrentSpecie(plank, indexMonth+1) === null && week <= 2"
+                    >
+                      <template #activator="{ on, attrs }">
+                        <v-sheet
+                          :color="getColorWeek(plank, indexMonth, week)"
+                          elevation="0"
+                          height="30"
+                          width="100%"
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
+                            <v-img
+                              v-if="week === 1 && getColorWeek(plank, indexMonth, week).split('semis').length > 1"
+                              :src="`/species_icons/${getColorWeek(plank, indexMonth, week).split('semis')[0]}.svg`"
+                              class="img-species"
+                              contain
+                            />
+                          </div>
+                        </v-sheet>
+                      </template>
+                      <pre v-if="getCurrentSpecie(plank, indexMonth+1) !== null">{{ getCurrentSpecie(plank, indexMonth+1).complete_name }}</pre>
+                   </v-tooltip>
                 </v-row>
               </v-col>
           </v-row>
@@ -81,9 +92,12 @@ export default {
       indexMonth += 2;
       return this.isSemis(plank, indexMonth) || this.isRecolte(plank, indexMonth);
     },
+    getCurrentSpecie(plank, indexMonth) {
+      return plank.find(specie => specie.month_semis === indexMonth || specie.month_recolte === indexMonth) || null
+    },
     getColorWeek(plank, indexMonth, week) {
       indexMonth++;
-      const specie = plank.filter(plank => plank.month_semis === indexMonth || plank.month_recolte === indexMonth)[0];
+      const specie = this.getCurrentSpecie(plank, indexMonth);
       if (specie) {
         // semis
         if (this.isSemis(specie, indexMonth, week)) {
