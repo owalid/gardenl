@@ -1,6 +1,10 @@
 <template>
   <v-container>
-    <!-- <p>Hello world</p> -->
+    <v-row justify="center" class="my-8">
+      <h1 class="primary--text">
+        Variétés
+      </h1>
+    </v-row>
     <detail-species-table />
     <v-row>
       <v-row
@@ -9,6 +13,8 @@
         class="mt-7"
       >
         <v-btn
+          outlined
+          color="primary"
           to="/"
         >
           Retour

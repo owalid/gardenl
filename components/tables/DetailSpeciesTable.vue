@@ -37,7 +37,14 @@
               {{ specieDetailed.complete_name }}
             </td>
             <td>
-              <v-chip v-for="impl in specieDetailed.implantation.split(' ; ')" :key="impl" color="primary" small class="mr-2">
+              <v-chip
+                v-for="impl in specieDetailed.implantation.split(' ; ')"
+                :key="impl"
+                color="primary"
+                :small="!xSmall"
+                :x-small="xSmall"
+                class="mr-2"
+              >
                 {{ impl }}
               </v-chip>
             </td>
@@ -69,6 +76,13 @@ import InputQuantity from '~/components/inputs/InputQuantity.vue'
 export default {
   name: "DetailSpeciesTable",
   components: {InputQuantity},
+  props: {
+    xSmall: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
   computed: {
     ...mapGetters({
       speciesDetailed: 'getSpeciesDetailed'

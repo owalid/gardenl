@@ -1,7 +1,12 @@
 <template>
-  <v-row>
+  <v-row class="mx-2" justify="center">
     <v-col v-for="(month, indexMonth) in months" :key="month">
-        <v-row align="center" justify="center" class="column-month mb-3">
+        <v-row
+          align="center"
+          justify="center"
+          class="column-month mb-3"
+          :class="{'column-last-month-border': isLastMonth(indexMonth)}"
+        >
           {{month}}
         </v-row>
         <div
@@ -21,6 +26,7 @@
                 v-for="week in weeks"
                 :key="week"
                 class="pa-0 ma-0 column-border"
+                :class="{'column-last-week-border': isLastMonth(indexMonth) && isLastWeek(week)}"
               >
                 <v-row
                   v-for="(plank, indexPlank) in implantation"
@@ -45,20 +51,14 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
 
 export default {
   name: "CalendarPlanificationRaw",
-   data() {
-    return {
-      months: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sep', 'Oct', 'Nov', 'Dec'],
-      numbers: 4,
-      weeks: 4,
-    }
-  },
+  mixins: [CalendarPlanificationMixin],
   computed: {
     ...mapGetters({
-      planificationRaw: 'getPlanificationRaw',
-      planificationOptimized: 'getPlanificationOptimized'
+      planificationRaw: 'getPlanificationRaw'
     })
   },
   methods: {
@@ -114,6 +114,11 @@ export default {
 }
 .column-border {
   border-left: 1px solid rgba(0, 0, 0, 0.199);
+
+  // &:last-child {
+    // 
+    // background-color: lime;
+  // }
 }
 
 .column-month {
@@ -122,7 +127,10 @@ export default {
   border-left: 1px solid rgba(0, 0, 0, 0.199);
   border-top: 1px solid rgba(0, 0, 0, 0.199);
   border-bottom: 1px solid rgba(0, 0, 0, 0.199);
-  z-index: 1;
+}
+
+.column-last-month-border,  .column-last-week-border {
+  border-right: 1px solid rgba(0, 0, 0, 0.199);
 }
 
 .border-top {
