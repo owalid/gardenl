@@ -1,9 +1,6 @@
 <template>
   <v-container fluid>
-    <!-- <v-row justify="center"> -->
     <planification-container />
-    <!-- </v-row> -->
-
     <v-row
       align="end"
       justify="start"

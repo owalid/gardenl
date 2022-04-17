@@ -14,13 +14,6 @@
           :key="indexPlanification"
           class="pa-0 ma-0"
         >
-          <!-- :class="[
-            {
-              'mt-10': Object.keys(planificationRaw).length > 1 && indexPlanification === Object.keys(planificationRaw).at(-1),
-              'border-top': Object.keys(planificationRaw).length > 1 && indexPlanification === Object.keys(planificationRaw).at(-1)
-            }
-          ]" -->
-
           <v-row v-for="(implantation, indexImplantation) in implantations" :key="indexImplantation" class="implantation-border">
               <v-col
                 v-for="week in weeks"
@@ -35,11 +28,10 @@
                   :class="`plank-${plank.uuid}-${week}-${indexMonth}`"
                   class="pa-0 ma-0 mb-1"
                 >
-                  <!-- :class="{'row-border': nextWeekShouldBeColored(plank, indexMonth)}" -->
                   <v-tooltip
                     left
                     max-width="500px"
-                    :disabled="!isSemis(plank, indexMonth+1) && week !== 1"
+                    :disabled="getColorWeek(plank, indexMonth, week) === ''"
                   >
                       <template #activator="{ on, attrs }">
                         <v-sheet
@@ -60,7 +52,7 @@
                           </div>
                         </v-sheet>
                       </template>
-                      <pre v-if="isFirstWeekSemis(plank, indexMonth+1, week)">{{ plank.complete_name }}</pre>
+                      <span>{{ plank.complete_name }}</span>
                    </v-tooltip>
                 </v-row>
               </v-col>
@@ -134,11 +126,6 @@ export default {
 }
 .column-border {
   border-left: 1px solid rgba(0, 0, 0, 0.199);
-
-  // &:last-child {
-    // 
-    // background-color: lime;
-  // }
 }
 
 .column-month {

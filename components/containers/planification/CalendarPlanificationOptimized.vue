@@ -14,12 +14,6 @@
           :key="indexPlanification"
           class="pa-0 ma-0"
         >
-          <!-- :class="[
-            {
-              'mt-10': Object.keys(planificationRaw).length > 1 && indexPlanification === Object.keys(planificationRaw).at(-1),
-              'border-top': Object.keys(planificationRaw).length > 1 && indexPlanification === Object.keys(planificationRaw).at(-1)
-            }
-          ]" -->
 
           <v-row v-for="(implantation, indexImplantation) in implantations" :key="indexImplantation" class="implantation-border">
               <v-col
@@ -35,11 +29,10 @@
                   :class="`plank-${plank.uuid}-${week}-${indexMonth}`"
                   class="pa-0 ma-0 mb-1"
                 >
-                  <!-- :class="{'row-border': nextWeekShouldBeColored(plank, indexMonth)}" -->
                    <v-tooltip
                       left
                       max-width="500px"
-                      :disabled="getCurrentSpecie(plank, indexMonth+1) === null && week <= 2"
+                      :disabled="getCurrentSpecie(plank, indexMonth+1) === null || week > 2"
                     >
                       <template #activator="{ on, attrs }">
                         <v-sheet
@@ -60,7 +53,9 @@
                           </div>
                         </v-sheet>
                       </template>
-                      <pre v-if="getCurrentSpecie(plank, indexMonth+1) !== null">{{ getCurrentSpecie(plank, indexMonth+1).complete_name }}</pre>
+                      <span v-if="getCurrentSpecie(plank, indexMonth+1) !== null && week <= 2">
+                        {{ getCurrentSpecie(plank, indexMonth+1).complete_name }}
+                      </span>
                    </v-tooltip>
                 </v-row>
               </v-col>
