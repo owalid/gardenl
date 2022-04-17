@@ -8,7 +8,7 @@
     <v-row justify="end" class="mr-10">
       <v-switch
         v-model="activatedOptimisation"
-        label="Activer l'optimisation"
+        label="Succession"
       >
       </v-switch>
     </v-row>

@@ -6,29 +6,34 @@
           justify="center"
           class="column-month mb-3"
           :class="{'column-last-month-border': isLastMonth(indexMonth)}"
-        >
+        > <!-- MONTH -->
           {{month}}
         </v-row>
         <div
           v-for="(implantations, indexPlanification) in planificationOptimized"
           :key="indexPlanification"
           class="pa-0 ma-0"
-        >
+        > <!-- PLANK -->
 
-          <v-row v-for="(implantation, indexImplantation) in implantations" :key="indexImplantation" class="implantation-border">
+          <v-row
+            v-for="(implantation, indexImplantation) in implantations"
+            :key="indexImplantation"
+            class="implantation-border"
+            :class="{'mt-7': indexImplantation > 0}"
+          > <!-- IMPLANTATION -->
               <v-col
                 v-for="week in weeks"
                 :key="week"
                 class="pa-0 ma-0 column-border"
                 :class="{'column-last-week-border': isLastMonth(indexMonth) && isLastWeek(week)}"
-              >
+              > <!-- WEEK -->
                 <v-row
                   v-for="(plank, indexPlank) in implantation"
                   :key="indexPlank"
                   :ref="`plank-${plank.uuid}-${week}-${indexMonth}`"
                   :class="`plank-${plank.uuid}-${week}-${indexMonth}`"
-                  class="pa-0 ma-0 mb-1"
-                >
+                  class="pa-0 ma-0 my-1"
+                > <!-- PLANK -->
                    <v-tooltip
                       left
                       max-width="500px"
@@ -117,6 +122,10 @@ export default {
 
 .implantation-border {
   border-bottom: 1px solid rgba(0, 0, 0, 0.199);
+
+  &:not(:first-child) {
+    border-top: 1px solid rgba(0, 0, 0, 0.199);
+  }
 }
 .column-border {
   border-left: 1px solid rgba(0, 0, 0, 0.199);
