@@ -406,7 +406,7 @@ export const getters = {
                                                       .findIndex(specieSelected => specieSelected.index === type.index) > -1)
                                       .map((type, typeIndex) => {
                                         const quantity  = speciesQuantity[speciesIndex][typeIndex]
-                                        return {...type, quantity, img_specie: species.src_img}
+                                        return {...type, quantity, specie_index: species.specie_index}
                                       })
               if (speciesFiltered.length > 0) {
                 result.push(...speciesFiltered)

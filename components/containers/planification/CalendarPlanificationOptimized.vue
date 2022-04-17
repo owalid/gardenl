@@ -41,7 +41,16 @@
                     elevation="0"
                     height="30"
                     width="100%"
-                  ></v-sheet>
+                  >
+                    <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
+                      <v-img
+                        v-if="week === 1 && getColorWeek(plank, indexMonth, week).split('semis').length > 1"
+                        :src="`/species_icons/${getColorWeek(plank, indexMonth, week).split('semis')[0]}.svg`"
+                        class="img-species"
+                        contain
+                      />
+                    </div>
+                  </v-sheet>
                 </v-row>
               </v-col>
           </v-row>
@@ -119,5 +128,10 @@ export default {
 
 .border-top {
   border-bottom: 1px solid rgba(0, 0, 0, 0.199);
+}
+
+.img-species {
+  width: 20px;
+  height: 20px;
 }
 </style>

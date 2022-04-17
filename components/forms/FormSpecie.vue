@@ -21,7 +21,7 @@
         md="3"
       >
         <v-row justify="center" class="my-2">
-          <modal-display-specieType
+          <modal-display-specie-type
             v-if="indexShowSpecieType !== -1"
             :data-specie-type="dataSpeciesFiltered[indexShowSpecie].types[indexShowSpecieType]"
             :open="indexSpecie === indexShowSpecie"
@@ -34,7 +34,7 @@
             @mouseleave="unhoverSpecie"
             @click="updateIndexShowSpecie(indexSpecie)"
           >
-            <img class="img_specie" :src="dataSpecie.src_img" />
+            <img class="img_specie" :src="`/species_icons/${dataSpecie.specie_index}.svg`" />
             <p class="my-2 text-center">{{ dataSpecie.specie }}</p>
           </div>
           <div v-if="indexSpecie === indexShowSpecie" class="container-type">

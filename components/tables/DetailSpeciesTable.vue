@@ -31,7 +31,7 @@
         <tbody>
           <tr v-for="(specieDetailed, idSpecieDetailed) in speciesDetailed" :key="idSpecieDetailed">
             <td>
-              <img class="img_specie" :src="specieDetailed.img_specie" />
+              <img class="img_specie" :src="`/species_icons/${specieDetailed.specie_index}.svg`" />
             </td>
             <td>
               {{ specieDetailed.complete_name }}
@@ -58,7 +58,7 @@
               {{ specieDetailed.yield_by_plank }}
             </td>
             <td>
-              {{ specieDetailed.yield_by_plank * specieDetailed.quantity }}
+              {{ (specieDetailed.yield_by_plank * specieDetailed.quantity).toFixed(2) }}
             </td>
             <td>
               {{ specieDetailed.quantity * 16 }}
