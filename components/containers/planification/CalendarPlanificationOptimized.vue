@@ -30,8 +30,8 @@
                 <v-row
                   v-for="(plank, indexPlank) in implantation"
                   :key="indexPlank"
-                  :ref="`plank-${plank.uuid}-${week}-${indexMonth}`"
-                  :class="`plank-${plank.uuid}-${week}-${indexMonth}`"
+                  :ref="`plank-${getCurrentSpecie(plank, indexMonth+1) ? getCurrentSpecie(plank, indexMonth+1).uuid : ''}-${week}-${indexMonth}`"
+                  :class="`plank-${getCurrentSpecie(plank, indexMonth+1) ? getCurrentSpecie(plank, indexMonth+1).uuid : ''}-${week}-${indexMonth}`"
                   class="pa-0 ma-0 my-1"
                 > <!-- PLANK -->
                    <v-tooltip
@@ -50,7 +50,7 @@
                         >
                           <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
                             <v-img
-                              v-if="week === 1 && getColorWeek(plank, indexMonth, week).split('semis').length > 1"
+                              v-if="getCurrentSpecie(plank, indexMonth+1) && week === getCurrentSpecie(plank, indexMonth+1).week_semis && getColorWeek(plank, indexMonth, week).split('semis').length > 1"
                               :src="`/species_icons/${getColorWeek(plank, indexMonth, week).split('semis')[0]}.svg`"
                               class="img-species"
                               contain
@@ -82,6 +82,14 @@ export default {
     })
   },
   methods: {
+    deleteColumnLeftBorder(specie, indexMonth, week) {
+      if ((this.isSemis(specie, indexMonth, week) && week === 2) || (this.isRecolte(specie, indexMonth, week) && week === 2)) {
+       this.$nextTick(() => {
+          const elmt = this.$refs[`plank-${specie.uuid}-${week}-${indexMonth-1}`][0];
+          elmt.parentNode.classList.remove('column-border')
+        })
+      }
+    },
     isRecolte(plank, indexMonth, week) {
       return plank.month_recolte === indexMonth && (plank.week_recolte === week || plank.week_recolte + 1 === week);
     },
@@ -99,6 +107,7 @@ export default {
       indexMonth++;
       const specie = this.getCurrentSpecie(plank, indexMonth);
       if (specie) {
+        // this.deleteColumnLeftBorder(specie, indexMonth, week);
         // semis
         if (this.isSemis(specie, indexMonth, week)) {
           return `${specie.specie_name}semis`;
@@ -129,6 +138,8 @@ export default {
 }
 .column-border {
   border-left: 1px solid rgba(0, 0, 0, 0.199);
+  // border-bottom: 1px solid rgba(0, 0, 0, 0.199);
+  // border-left: 1px solid rgba(149, 19, 19, 0.892);
 }
 
 .column-month {

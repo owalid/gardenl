@@ -1,37 +1,42 @@
 /* eslint-disable no-console */
 import dataSpecies from '~/data/dataSpecies.json';
 
+
+// const inRangeStrictly = (value, min, max) => value > min && value < max;
 const inRange = (value, min, max) => value >= min && value <= max;
-const getRangeArray = (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i);
+const getRangeArray = (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i); 
 
-const generateNewSolutionsPosition = (solutions, candidatSpecie, currentSpecie, before) => {
+const generateNewSolutionsPosition = (solutions, candidatSpecie, currentSpecie, before, deltaRange) => {
   // determine the smallest window to place currentSpecie in candidatSpecie
+  if (deltaRange && Array.isArray(deltaRange) && deltaRange.length > 0) {
+    const lastElmtDelta = deltaRange[deltaRange.length - 1];
+    for (let i = deltaRange[0]; i <= lastElmtDelta; i++) {
+      for (let j = 1; j <= 4; j++) {
+        const candidateSolution = {...candidatSpecie};
+        const newSpecieSolution = {...currentSpecie};
 
-  const deltaMonthBetweenQuandiadateAndCurrent = getRangeArray(candidatSpecie.month_end_semis, currentSpecie.month_end_recolte);
-  
-  for (let i = 0; i <= deltaMonthBetweenQuandiadateAndCurrent.length; i++) {
-    for (let j = 1; j <= 4; j++) {
-      const candidateSolution = candidatSpecie;
-      const newSpecieSolution = currentSpecie;
-      if (before) {
-        candidateSolution.week_recolte += i
-        candidateSolution.week_semis += i
-        candidateSolution.month_recolte += j
-        candidateSolution.month_semis += j
-      } else {
-        candidateSolution.week_recolte = Math.abs(candidateSolution.week_recolte - i)
-        candidateSolution.week_semis = Math.abs(candidateSolution.week_semis - i)
-        candidateSolution.month_recolte += j
-        candidateSolution.month_semis += j
+        console.log("time_semis_to_recolte", candidateSolution.time_semis_to_recolte)
+        candidateSolution.week_recolte += j
+        candidateSolution.week_semis += j
+        candidateSolution.month_semis = i
+        candidateSolution.month_recolte = i + candidateSolution.time_semis_to_recolte
+
+        if (
+          candidateSolution.week_recolte <= 4
+          && candidateSolution.week_semis <= 4
+          && candidateSolution.month_recolte <= 12
+          && candidateSolution.month_semis <= 12
+        ) {
+          solutions.push({
+            newCandidateSpecie: candidateSolution,
+            newSpecie: newSpecieSolution,
+            before
+          })
+        }
       }
-
-      solutions.push({
-        newCandidateSpecie: candidateSolution,
-        newSpecie: newSpecieSolution
-      })
     }
+    return solutions
   }
-  return solutions
 }
 
 export const getters = {
@@ -188,11 +193,11 @@ export const getters = {
     const ruleFertilization = {
       high: {
         index: 0,
-        match_with: [1, 3]
+        match_with: [1, 2]
       }, // need to match with 3 and 1
       medium: {
         index: 1,
-        match_with: [0, 1]
+        match_with: [0, 2]
       }, // need to match with 2 and 0
       low: {
         index: 2,
@@ -225,13 +230,6 @@ export const getters = {
         resultGardens.push([currentSpecie])
       } else { // Else try to add in existing plank
         // generate week_start_recolte and week_end_recolte, week_start_semis and week_end_semis at 0 in currentSpecie
-        // currentSpecie = {
-        //   ...currentSpecie,
-        //   week_recolte: 0,
-        //   week_semis: 0,
-        //   month_recolte: currentSpecie.month_start_recolte,
-        //   month_semis: currentSpecie.month_start_semis
-        // }
         // Get planks who not have same specie than currentSpecie
         const indexesGardens = resultGardens.reduce((acc, elmt, index) => {
           if (elmt.find(specie => specie.specie_name !== currentSpecie.specie_name)) {
@@ -254,17 +252,19 @@ export const getters = {
           */ 
             const res = currentPlank.find((candidatSpecie, indexQuandidate) => { // (1)
               let found = false
-              let isBefore = false
               let canInsert = false
               let isValidate = false
               let solutions = []
+
+              console.log("===========================")
+              console.log("candidatSpecie", candidatSpecie)
+              console.log("currentSpecie", currentSpecie);
 
               // Know if there are some place for currentSpecie (week's recolte and semis)
               // if there is a place for a species in the board it is before sowing or after harvesting or its harvesting is during sowing or its sowing is during harvesting
               // here it is necessary to make evolve the species of the currentPlank in the case where we can put the species in the plate (according to the months and then to the week)
               if (currentSpecie.month_semis < candidatSpecie.month_semis && currentSpecie.month_recolte < candidatSpecie.month_semis) { // if before all            
                 console.log('before all')
-                isBefore = true
                 canInsert = true
                 solutions.push(
                   {
@@ -274,16 +274,19 @@ export const getters = {
                 )
               } 
               if (
-                (inRange(currentSpecie.month_start_semis, candidatSpecie.month_end_semis, candidatSpecie.month_end_semis)
-                  && inRange(currentSpecie.month_start_recolte, candidatSpecie.month_end_recolte, candidatSpecie.month_end_semis))
-                || (currentSpecie.month_start_semis < candidatSpecie.month_start_semis
-                    && inRange(currentSpecie.month_end_semis, candidatSpecie.month_start_semis, candidatSpecie.month_end_semis))
+                (inRange(currentSpecie.month_start_semis, candidatSpecie.month_start_semis, candidatSpecie.month_end_semis)
+                  && inRange(currentSpecie.month_end_recolte, candidatSpecie.month_start_semis, candidatSpecie.month_end_semis)) // all
+                || (currentSpecie.month_end_semis <= candidatSpecie.month_start_semis
+                    && inRange(currentSpecie.month_end_recolte, candidatSpecie.month_start_semis, candidatSpecie.month_end_semis)) // partialy
                 ) { // all or partly is in range semis
                   
                   console.log('all is in range semis')
-                  solutions = [...generateNewSolutionsPosition(solutions, candidatSpecie, currentSpecie, true)]
-                  isBefore = true
-                  canInsert = true
+                  const deltaMonthBetweenQuandiadateAndCurrentSemis = getRangeArray(currentSpecie.month_end_recolte, candidatSpecie.month_end_semis);
+                  console.log(deltaMonthBetweenQuandiadateAndCurrentSemis)
+                  if (deltaMonthBetweenQuandiadateAndCurrentSemis.length > 0) {
+                    solutions = [...generateNewSolutionsPosition(solutions, candidatSpecie, currentSpecie, true, deltaMonthBetweenQuandiadateAndCurrentSemis)]
+                    canInsert = true
+                  }
               } 
               if (currentSpecie.month_semis > candidatSpecie.month_recolte && currentSpecie.month_recolte > candidatSpecie.month_recolte) { // if after all
                 canInsert = true
@@ -294,15 +297,36 @@ export const getters = {
                   }
                 )
               } 
+
+              /*
+                haricot
+                currentSpecie.month_start_semis = 5
+                currentSpecie.month_end_semis = 6
+                currentSpecie.month_start_recolte = 9
+                currentSpecie.month_end_recolte = 10
+
+                bettrave
+                candidatSpecie.month_start_semis = 3
+                candidatSpecie.month_end_semis = 8
+                candidatSpecie.month_start_recolte = 5
+                candidatSpecie.month_end_recolte = 11
+              */
               if (
-                (inRange(currentSpecie.month_start_semis, candidatSpecie.month_end_recolte, candidatSpecie.month_end_recolte)
-                  && inRange(currentSpecie.month_start_recolte, candidatSpecie.month_end_recolte, candidatSpecie.month_end_recolte))
+                (inRange(currentSpecie.month_start_semis, candidatSpecie.month_start_recolte, candidatSpecie.month_end_recolte)
+                  && inRange(currentSpecie.month_end_recolte, candidatSpecie.month_start_recolte, candidatSpecie.month_end_recolte)) // all
                 || (inRange(currentSpecie.month_end_semis, candidatSpecie.month_start_recolte, candidatSpecie.month_end_recolte) &&
-                    currentSpecie.month_start_recolte > candidatSpecie.month_end_recolte)
+                    currentSpecie.month_end_recolte >= candidatSpecie.month_end_recolte) // partialy
                 ) { // all or partly is in range recolte
                   console.log('all is in range recolte')
-                  solutions = [...generateNewSolutionsPosition(solutions, candidatSpecie, currentSpecie, false)]
+                  const deltaMonthBetweenQuandiadateAndCurrentRecolte = getRangeArray(candidatSpecie.month_start_recolte, currentSpecie.month_end_recolte);
+                  console.log(deltaMonthBetweenQuandiadateAndCurrentRecolte)
+                  if (deltaMonthBetweenQuandiadateAndCurrentRecolte.length > 0) {
+                    solutions = [...generateNewSolutionsPosition(solutions, candidatSpecie, currentSpecie, false, deltaMonthBetweenQuandiadateAndCurrentRecolte)]
+                    canInsert = true
+                  }
               } 
+              
+              console.log("sol", solutions)
               
               if (canInsert) {
                 currentPlank.forEach(specieToValidate => { // (2)
@@ -325,28 +349,50 @@ export const getters = {
                       const semisSpecieToValidateIsInRangeSpecie = rangeSpecieSolution.includes(specieToValidate.month_semis) 
                       const isValidsemisSpecieToValidateSpecie = !semisSpecieToValidateIsInRangeSpecie || (semisSpecieToValidateIsInRangeSpecie && newCandidateSpecie.week_semis !== specieToValidate.week_semis)
 
-
+                      const candidateNotInSpecieToValidate = !inRange(newCandidateSpecie.month_semis, specieToValidate.month_semis, specieToValidate.month_recolte)
+                                                              && !inRange(newCandidateSpecie.month_recolte, specieToValidate.month_semis, specieToValidate.month_recolte)
+                                                            
+                                                           
+                      const newSpecieNotInSpecieToValidate = !inRange(newSpecie.month_semis, specieToValidate.month_semis, specieToValidate.month_recolte)
+                                                              && !inRange(newSpecie.month_recolte, specieToValidate.month_semis, specieToValidate.month_recolte)
+                                                             
+                      console.log("newSpecieNotInSpecieToValidate", newSpecieNotInSpecieToValidate)
                       return (
                         isValidrecolteSpecieToValidateQuandidate
-                         && isValidsemisSpecieToValidateQuandidate
-                         && isValidrecolteSpecieToValidateSpecie
-                         && isValidsemisSpecieToValidateSpecie
+                        && candidateNotInSpecieToValidate
+                        && newSpecieNotInSpecieToValidate
+                        && isValidsemisSpecieToValidateQuandidate
+                        && isValidrecolteSpecieToValidateSpecie
+                        && isValidsemisSpecieToValidateSpecie
                       )
                     })
                   }
                 })
+
+                solutions = solutions.filter(({newSpecie, newCandidateSpecie}) => {
+                  const candidateNotInSpecieToValidate = !inRange(newCandidateSpecie.month_semis, newSpecie.month_semis, newSpecie.month_recolte) && !inRange(newCandidateSpecie.month_recolte, newSpecie.month_semis, newSpecie.month_recolte)
+                  const newSpecieNotInSpecieToValidate = !inRange(newSpecie.month_semis, newCandidateSpecie.month_semis, newCandidateSpecie.month_recolte) && !inRange(newSpecie.month_recolte, newCandidateSpecie.month_semis, newCandidateSpecie.month_recolte)
+                  console.log("candidateNotInSpecieToValidate && newSpecieNotInSpecieToValidate", candidateNotInSpecieToValidate && newSpecieNotInSpecieToValidate)
+                  return candidateNotInSpecieToValidate && newSpecieNotInSpecieToValidate
+                })
                 isValidate = solutions.length > 0
               }
-
+              console.log("isValidate", isValidate)
+              console.log("solutions.length", solutions.length)
               if (isValidate) {
                 // Know if we can add with this fertilisation's order high, medium, low occording currentSpecie.fertilisation
-                const solution = solutions[0]
-                const ruleCurrentFertilization = ruleFertilization[solution.newSpecie.fertilization];
-                const indexMatchWithCurrent = (isBefore) ? 0 : 1
-                const ruleQuanditateFertilization = ruleFertilization[solution.newCandidateSpecie.fertilization];
+                
+                const ultimateSolution = solutions.filter(({newSpecie, newCandidateSpecie, before}) => {
+                  const indexMatchWithCurrent = (before) ? 0 : 1
+                  const ruleCurrentFertilization = ruleFertilization[newSpecie.fertilization];
+                  const ruleQuanditateFertilization = ruleFertilization[newCandidateSpecie.fertilization];
 
-                const canFertilisation = ruleCurrentFertilization.match_with[indexMatchWithCurrent] === ruleQuanditateFertilization.index;
-                if (canFertilisation) {
+                  return ruleQuanditateFertilization.match_with[indexMatchWithCurrent] === ruleCurrentFertilization.index;
+                })
+
+                console.log("ultimateSolution.length", ultimateSolution.length)
+                if (ultimateSolution.length > 0) {
+                  const solution = ultimateSolution[0]
                   found = true;
                   finalResult.index_garden = indexesGardens[i]
                   resultGardens[indexesGardens[i]][indexQuandidate] = solution.newCandidateSpecie;
@@ -374,6 +420,7 @@ export const getters = {
         }
       }
     });
+    console.log("===========================")
     greenhouse = greenhouse.reduce((flat, toFlatten) => flat.concat(toFlatten), [])
 
     resultGardens = [resultGardens]
