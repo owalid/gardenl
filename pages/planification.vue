@@ -4,7 +4,7 @@
     <v-row
       align="end"
       justify="start"
-      class="mt-10 ml-5"
+      class="my-10 ml-5"
     >
       <v-btn
         outlined
