@@ -82,26 +82,26 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
 
 export default {
   name: "CalendarPlanificationOptimized",
   mixins: [CalendarPlanificationMixin],
-  // data() {
-  //   return {
-  //     planificationOptimized: []
-  //   }
-  // },
+  data() {
+    return {
+      planificationOptimized: []
+    }
+  },
   async fetch() {
-    // this.planificationOptimized = await this.$plannification.getPlanificationOptimized();
+    this.planificationOptimized = await this.$plannification.getPlanificationOptimized();
     await this.$nextTick();
   },
-  computed: {
-    ...mapGetters({
-      planificationOptimized: 'getPlanificationOptimized'
-    })
-  },
+  // computed: {
+  //   ...mapGetters({
+  //     planificationOptimized: 'getPlanificationOptimized'
+  //   })
+  // },
   methods: {
     isFirstWeekSemis(specie, indexMonth, week) {
       return indexMonth === specie.month_start_semis && week === 1;

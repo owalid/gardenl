@@ -77,26 +77,26 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
 
 export default {
   name: "CalendarPlanificationRaw",
   mixins: [CalendarPlanificationMixin],
-  // data() {
-  //   return {
-  //     planificationRaw: []
-  //   }
-  // },
+  data() {
+    return {
+      planificationRaw: []
+    }
+  },
   async fetch() {
-    // this.planificationRaw = await this.$plannification.getPlanificationRaw();
+    this.planificationRaw = await this.$plannification.getPlanificationRaw();
     await this.$nextTick();
   },
-  computed: {
-    ...mapGetters({
-      planificationRaw: 'getPlanificationRaw'
-    })
-  },
+  // computed: {
+  //   ...mapGetters({
+  //     planificationRaw: 'getPlanificationRaw'
+  //   })
+  // },
   methods: {
     deleteColumnLeftBorder(plank, indexMonth, week) {
       if ((this.isSemis(plank, indexMonth) && !this.isFirstWeekSemis(plank, indexMonth, week)) || (this.isRecolte(plank, indexMonth) && !this.isFirstMonthRecolte(plank, indexMonth, week))) {
