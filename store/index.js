@@ -298,19 +298,6 @@ export const getters = {
                 )
               } 
 
-              /*
-                haricot
-                currentSpecie.month_start_semis = 5
-                currentSpecie.month_end_semis = 6
-                currentSpecie.month_start_recolte = 9
-                currentSpecie.month_end_recolte = 10
-
-                bettrave
-                candidatSpecie.month_start_semis = 3
-                candidatSpecie.month_end_semis = 8
-                candidatSpecie.month_start_recolte = 5
-                candidatSpecie.month_end_recolte = 11
-              */
               if (
                 (inRange(currentSpecie.month_start_semis, candidatSpecie.month_start_recolte, candidatSpecie.month_end_recolte)
                   && inRange(currentSpecie.month_end_recolte, candidatSpecie.month_start_recolte, candidatSpecie.month_end_recolte)) // all
