@@ -1,46 +1,45 @@
 /* eslint-disable no-console */
 import dataSpecies from '~/data/dataSpecies.json';
 
+export default (context, inject) => {
+  const { store } = context.app;
+    // const inRangeStrictly = (value, min, max) => value > min && value < max;
+  const inRange = (value, min, max) => value >= min && value <= max;
+  const getRangeArray = (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i);
 
-// const inRangeStrictly = (value, min, max) => value > min && value < max;
-const inRange = (value, min, max) => value >= min && value <= max;
-const getRangeArray = (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i); 
-
-const generateNewSolutionsPosition = (solutions, candidatSpecie, currentSpecie, before, deltaRange) => {
-  // determine the smallest window to place currentSpecie in candidatSpecie
-  if (deltaRange && Array.isArray(deltaRange) && deltaRange.length > 0) {
-    const lastElmtDelta = deltaRange[deltaRange.length - 1];
-    for (let i = deltaRange[0]; i <= lastElmtDelta; i++) {
-      for (let j = 1; j <= 4; j++) {
-        const candidateSolution = {...candidatSpecie};
-        const newSpecieSolution = {...currentSpecie};
-
-        // console.log("time_semis_to_recolte", candidateSolution.time_semis_to_recolte)
-        candidateSolution.week_recolte += j
-        candidateSolution.week_semis += j
-        candidateSolution.month_semis = i
-        candidateSolution.month_recolte = i + candidateSolution.time_semis_to_recolte
-
-        if (
-          candidateSolution.week_recolte <= 4
-          && candidateSolution.week_semis <= 4
-          && candidateSolution.month_recolte <= 12
-          && candidateSolution.month_semis <= 12
-        ) {
-          solutions.push({
-            newCandidateSpecie: candidateSolution,
-            newSpecie: newSpecieSolution,
-            before
-          })
+  const generateNewSolutionsPosition = (solutions, candidatSpecie, currentSpecie, before, deltaRange) => {
+    // determine the smallest window to place currentSpecie in candidatSpecie
+    if (deltaRange && Array.isArray(deltaRange) && deltaRange.length > 0) {
+      const lastElmtDelta = deltaRange[deltaRange.length - 1];
+      for (let i = deltaRange[0]; i <= lastElmtDelta; i++) {
+        for (let j = 1; j <= 4; j++) {
+          const candidateSolution = {...candidatSpecie};
+          const newSpecieSolution = {...currentSpecie};
+  
+          candidateSolution.week_recolte += j
+          candidateSolution.week_semis += j
+          candidateSolution.month_semis = i
+          candidateSolution.month_recolte = i + candidateSolution.time_semis_to_recolte
+  
+          if (
+            candidateSolution.week_recolte <= 4
+            && candidateSolution.week_semis <= 4
+            && candidateSolution.month_recolte <= 12
+            && candidateSolution.month_semis <= 12
+          ) {
+            solutions.push({
+              newCandidateSpecie: candidateSolution,
+              newSpecie: newSpecieSolution,
+              before
+            })
+          }
         }
       }
+      return solutions
     }
-    return solutions
   }
-}
 
-export const getters = {
-  getPlanificationRaw(state, getters) {
+  const getPlanificationRaw = () =>{
     /*
       return object of array[n] of array[3] of objects
       n is size number of gardens or greenhouses
@@ -83,10 +82,10 @@ export const getters = {
     dataSpecies
         // filter by selected specie and get minimal data
         .map(specie => specie.types
-                              .filter(type => state.speciesSelected.find(specieSelected => specieSelected.index === type.index))
+                              .filter(type => store.state.speciesSelected.find(specieSelected => specieSelected.index === type.index))
                               .map(type => {
                                 const result = []
-                                const {quantity} = state.speciesSelected.find(specieSelected => specieSelected.index === type.index)
+                                const {quantity} = store.state.speciesSelected.find(specieSelected => specieSelected.index === type.index)
                                 for (let i=0; i < quantity; i++) {
                                   result.push({
                                     index: type.index,
@@ -135,8 +134,9 @@ export const getters = {
           }
         })
     return res
-  },
-  getPlanificationOptimized(state, getters) {
+  }
+
+  const getPlanificationOptimized = () => {
       /*
       return object of array[n] of array[3] of array[k] of objects
       n is size number of gardens or greenhouses
@@ -204,7 +204,7 @@ export const getters = {
         match_with: [1, 0]
       } // need to match with 1 and 0
     }
-    const planificationRaw = getters.getPlanificationRaw
+    const planificationRaw = store.getters.getPlanificationRaw
     let gardens = []
     let resultGardens = []
     let greenhouse = []
@@ -339,10 +339,10 @@ export const getters = {
                       const candidateNotInSpecieToValidate = !inRange(newCandidateSpecie.month_semis, specieToValidate.month_semis, specieToValidate.month_recolte)
                                                               && !inRange(newCandidateSpecie.month_recolte, specieToValidate.month_semis, specieToValidate.month_recolte)
                                                             
-                                                           
+                                                          
                       const newSpecieNotInSpecieToValidate = !inRange(newSpecie.month_semis, specieToValidate.month_semis, specieToValidate.month_recolte)
                                                               && !inRange(newSpecie.month_recolte, specieToValidate.month_semis, specieToValidate.month_recolte)
-                                                             
+                                                            
                       // console.log("newSpecieNotInSpecieToValidate", newSpecieNotInSpecieToValidate)
                       return (
                         isValidrecolteSpecieToValidateQuandidate
@@ -421,90 +421,6 @@ export const getters = {
       }
     })
     return {gardens: finalResultGardens, greenhouse}
-  },
-  getSpeciesQuantity(state) {
-    return dataSpecies.map((specie, indexSpecie) => 
-      specie.types.map((type, indexType) => {
-        const currentSelected = state.speciesSelected.find(specieSelected => specieSelected.index === type.index)
-        return (currentSelected) ? currentSelected.quantity : 0;
-      })
-    )
-  },
-  getSpeciesDetailed(state, getters) {
-    // bind speciesSelected with dataSpecies
-    const result = [];
-    const speciesQuantity = getters.getSpeciesQuantity
-    dataSpecies
-            .forEach((species, speciesIndex) => {
-              const speciesFiltered = species.types
-                                      .filter(type => state.speciesSelected
-                                                      .findIndex(specieSelected => specieSelected.index === type.index) > -1)
-                                      .map((type, typeIndex) => {
-                                        const quantity  = speciesQuantity[speciesIndex][typeIndex]
-                                        return {...type, quantity, specie_index: species.specie_index}
-                                      })
-              if (speciesFiltered.length > 0) {
-                result.push(...speciesFiltered)
-              }
-            });
-    return result.sort((a, b) => a.family_name)
-  },
-  getTotalSpeciesSelected(state, getters) {
-    const speciesDetailed = getters.getSpeciesDetailed
-
-    const totalPlank = speciesDetailed.reduce((acc, cur) => acc + cur.quantity, 0)
-    const etp = ((speciesDetailed.reduce((acc, cur) => acc + cur.it_duration, 0) + 376) / 1600).toFixed(2)
-    const sumYield = parseInt(speciesDetailed.reduce((acc, cur) => acc + cur.yield_by_plank * cur.quantity, 0))
-    const sumSurface = parseInt(speciesDetailed.reduce((acc, cur) => acc + cur.quantity * 16, 0))
-
-    return {
-      etp,
-      sumYield,
-      sumSurface,
-      totalPlank
-    }
   }
-}
-
-export const state = () => ({
-  speciesSelected: [],
-})
-
-export const mutations = {
-  setSpeciesSelected(state, species) {
-    state.speciesSelected = species
-    this.$cookies.set('speciesSelected', state.speciesSelected)
-  },
-  updateQuantity(state, {index, quantity}) {
-    if (quantity < 0) return ;
-
-    let copySpeciesSelected = [...state.speciesSelected]
-    if (quantity === 0) {
-      copySpeciesSelected = copySpeciesSelected.filter(specieSelected => specieSelected.index !== index)
-    } else {
-        dataSpecies.forEach((specie, indexSpecie) => {
-          specie.types.forEach((type, indexType) => {
-          if (type.index === index) {
-            const indexSpecieSelected = copySpeciesSelected.findIndex(specieSelected => specieSelected.index === index)
-            if (indexSpecieSelected > -1) {
-              copySpeciesSelected[indexSpecieSelected].quantity = quantity
-            } else {
-              copySpeciesSelected.push({index, quantity})
-            }
-          }
-        })
-      })
-    }
-    state.speciesSelected = [...copySpeciesSelected]
-    this.$cookies.set('speciesSelected', state.speciesSelected)
-  }
-}
-
-export const actions = {
-  nuxtServerInit({ state }, { req }) {
-    if (req.headers.cookie) {
-      const speciesSelected = this.$cookies.get('speciesSelected')
-      state.speciesSelected = speciesSelected || [];
-    }
-  }
+  inject('plannification', { getPlanificationOptimized, getPlanificationRaw })
 }

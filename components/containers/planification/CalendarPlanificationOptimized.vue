@@ -1,6 +1,7 @@
 <template>
-  <v-row class="mx-2" justify="center">
-    <v-col v-for="(month, indexMonth) in months" :key="month">
+  <div>
+    <v-row class="mx-2" justify="center">
+      <v-col v-for="(month, indexMonth) in months" :key="month">
         <v-row
           align="center"
           justify="center"
@@ -9,18 +10,18 @@
         > <!-- MONTH -->
           {{month}}
         </v-row>
-        <div
-          v-for="(implantations, indexPlanification) in planificationOptimized"
-          :key="indexPlanification"
-          class="pa-0 ma-0"
-        > <!-- PLANK -->
-
-          <v-row
-            v-for="(implantation, indexImplantation) in implantations"
-            :key="indexImplantation"
-            class="implantation-border"
-            :class="{'mt-7': indexImplantation > 0}"
-          > <!-- IMPLANTATION -->
+        <div v-if="!$fetchState.pending">
+          <div
+            v-for="(implantations, indexPlanification) in planificationOptimized"
+            :key="indexPlanification"
+            class="pa-0 ma-0"
+          > <!-- PLANK -->
+            <v-row
+              v-for="(implantation, indexImplantation) in implantations"
+              :key="indexImplantation"
+              class="implantation-border"
+              :class="{'mt-7': indexImplantation > 0}"
+            > <!-- IMPLANTATION -->
               <v-col
                 v-for="week in weeks"
                 :key="week"
@@ -34,40 +35,50 @@
                   :class="`plank-${getCurrentSpecie(plank, indexMonth+1) ? getCurrentSpecie(plank, indexMonth+1).uuid : ''}-${week}-${indexMonth}`"
                   class="pa-0 ma-0 my-1"
                 > <!-- PLANK -->
-                   <v-tooltip
-                      left
-                      max-width="500px"
-                      :disabled="getCurrentSpecie(plank, indexMonth+1) === null || week > 2"
-                    >
-                      <template #activator="{ on, attrs }">
-                        <v-sheet
-                          :color="getColorWeek(plank, indexMonth, week)"
-                          elevation="0"
-                          height="30"
-                          width="100%"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
-                            <v-img
-                              v-if="getCurrentSpecie(plank, indexMonth+1) && week === getCurrentSpecie(plank, indexMonth+1).week_semis && getColorWeek(plank, indexMonth, week).split('semis').length > 1"
-                              :src="`/species_icons/${getColorWeek(plank, indexMonth, week).split('semis')[0]}.svg`"
-                              class="img-species"
-                              contain
-                            />
-                          </div>
-                        </v-sheet>
-                      </template>
-                      <span v-if="getCurrentSpecie(plank, indexMonth+1) !== null && week <= 2">
-                        {{ getCurrentSpecie(plank, indexMonth+1).complete_name }}
-                      </span>
-                   </v-tooltip>
+                  <v-tooltip
+                    left
+                    max-width="500px"
+                    :disabled="getCurrentSpecie(plank, indexMonth+1) === null || week > 2"
+                  >
+                    <template #activator="{ on, attrs }">
+                      <v-sheet
+                        :color="getColorWeek(plank, indexMonth, week)"
+                        elevation="0"
+                        height="30"
+                        width="100%"
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
+                          <v-img
+                            v-if="getCurrentSpecie(plank, indexMonth+1) && week === getCurrentSpecie(plank, indexMonth+1).week_semis && getColorWeek(plank, indexMonth, week).split('semis').length > 1"
+                            :src="`/species_icons/${getColorWeek(plank, indexMonth, week).split('semis')[0]}.svg`"
+                            class="img-species"
+                            contain
+                          />
+                        </div>
+                      </v-sheet>
+                    </template>
+                    <span v-if="getCurrentSpecie(plank, indexMonth+1) !== null && week <= 2">
+                      {{ getCurrentSpecie(plank, indexMonth+1).complete_name }}
+                    </span>
+                  </v-tooltip>
                 </v-row>
               </v-col>
-          </v-row>
+            </v-row>
+          </div>
         </div>
       </v-col>
-  </v-row>
+    </v-row>
+    <v-row v-if="$fetchState.pending" align="center" justify="center">
+      <v-progress-circular
+        indeterminate
+        color="primary"
+        size="24"
+        width="3"
+      />
+    </v-row>
+  </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
@@ -76,6 +87,9 @@ import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
 export default {
   name: "CalendarPlanificationOptimized",
   mixins: [CalendarPlanificationMixin],
+  async fetch() {
+    await this.$nextTick();
+  },
   computed: {
     ...mapGetters({
       planificationOptimized: 'getPlanificationOptimized'

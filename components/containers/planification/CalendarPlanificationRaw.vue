@@ -1,6 +1,7 @@
 <template>
-  <v-row class="mx-2" justify="center">
-    <v-col v-for="(month, indexMonth) in months" :key="month">
+  <div>
+    <v-row class="mx-2" justify="center">
+      <v-col v-for="(month, indexMonth) in months" :key="month">
         <v-row
           align="center"
           justify="center"
@@ -9,17 +10,18 @@
         > <!-- MONTH -->
           {{month}}
         </v-row>
-        <div
-          v-for="(implantations, indexPlanification) in planificationRaw"
-          :key="indexPlanification"
-          class="pa-0 ma-0"
-        > <!-- PLANK -->
-          <v-row
-            v-for="(implantation, indexImplantation) in implantations"
-            :key="indexImplantation"
-            class="implantation-border"
-            :class="{'mt-7': indexImplantation > 0}"
-          > <!-- IMPLANTATION -->
+        <div v-if="!$fetchState.pending">
+          <div
+            v-for="(implantations, indexPlanification) in planificationRaw"
+            :key="indexPlanification"
+            class="pa-0 ma-0"
+          > <!-- PLANK -->
+            <v-row
+              v-for="(implantation, indexImplantation) in implantations"
+              :key="indexImplantation"
+              class="implantation-border"
+              :class="{'mt-7': indexImplantation > 0}"
+            > <!-- IMPLANTATION -->
               <v-col
                 v-for="week in weeks"
                 :key="week"
@@ -38,33 +40,41 @@
                     max-width="500px"
                     :disabled="getColorWeek(plank, indexMonth, week) === ''"
                   >
-                      <template #activator="{ on, attrs }">
-                        <v-sheet
-                          :color="getColorWeek(plank, indexMonth, week)"
-                          elevation="0"
-                          height="30"
-                          width="100%"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
-                            <v-img
-                              v-if="isFirstWeekSemis(plank, indexMonth+1, week)"
-                              :src="`/species_icons/${plank.specie_name}.svg`"
-                              class="img-species"
-                              contain
-                            />
-                          </div>
-                        </v-sheet>
-                      </template>
-                      <span>{{ plank.complete_name }}</span>
-                   </v-tooltip>
+                    <template #activator="{ on, attrs }">
+                      <v-sheet
+                        :color="getColorWeek(plank, indexMonth, week)"
+                        elevation="0"
+                        height="30"
+                        width="100%"
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
+                          <v-img
+                            v-if="isFirstWeekSemis(plank, indexMonth+1, week)"
+                            :src="`/species_icons/${plank.specie_name}.svg`"
+                            class="img-species"
+                            contain
+                          />
+                        </div>
+                      </v-sheet>
+                    </template>
+                    <span>{{ plank.complete_name }}</span>
+                  </v-tooltip>
                 </v-row>
               </v-col>
-          </v-row>
+            </v-row>
+          </div>
         </div>
       </v-col>
-  </v-row>
+    </v-row>
+    <v-row v-if="$fetchState.pending" align="center" justify="center">
+      <v-progress-circular
+        indeterminate
+        color="primary"
+      />
+    </v-row>
+  </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
@@ -73,6 +83,9 @@ import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
 export default {
   name: "CalendarPlanificationRaw",
   mixins: [CalendarPlanificationMixin],
+  async fetch() {
+    await this.$nextTick();
+  },
   computed: {
     ...mapGetters({
       planificationRaw: 'getPlanificationRaw'

@@ -12,8 +12,8 @@
       >
       </v-switch>
     </v-row>
-    <calendar-planification-raw v-show="!activatedOptimisation" />
-    <calendar-planification-optimized v-show="activatedOptimisation" />
+    <calendar-planification-raw v-if="!activatedOptimisation" />
+    <calendar-planification-optimized v-else/>
   </div>
 </template>
 <script>
