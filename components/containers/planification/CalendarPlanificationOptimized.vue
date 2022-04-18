@@ -87,7 +87,13 @@ import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
 export default {
   name: "CalendarPlanificationOptimized",
   mixins: [CalendarPlanificationMixin],
+  // data() {
+  //   return {
+  //     planificationOptimized: []
+  //   }
+  // },
   async fetch() {
+    // this.planificationOptimized = await this.$plannification.getPlanificationOptimized();
     await this.$nextTick();
   },
   computed: {

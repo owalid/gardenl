@@ -83,7 +83,13 @@ import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
 export default {
   name: "CalendarPlanificationRaw",
   mixins: [CalendarPlanificationMixin],
+  // data() {
+  //   return {
+  //     planificationRaw: []
+  //   }
+  // },
   async fetch() {
+    // this.planificationRaw = await this.$plannification.getPlanificationRaw();
     await this.$nextTick();
   },
   computed: {
