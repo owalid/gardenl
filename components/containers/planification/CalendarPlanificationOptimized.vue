@@ -31,18 +31,19 @@
                 <v-row
                   v-for="(plank, indexPlank) in implantation"
                   :key="indexPlank"
-                  :ref="`plank-${getCurrentSpecie(plank, indexMonth+1) ? getCurrentSpecie(plank, indexMonth+1).uuid : ''}-${week}-${indexMonth}`"
-                  :class="`plank-${getCurrentSpecie(plank, indexMonth+1) ? getCurrentSpecie(plank, indexMonth+1).uuid : ''}-${week}-${indexMonth}`"
                   class="pa-0 ma-0 my-1"
                 > <!-- PLANK -->
+
                   <v-tooltip
+                    v-for="(specie, indexSpecie) in plank"
+                    :key="indexSpecie"
                     left
                     max-width="500px"
-                    :disabled="getCurrentSpecie(plank, indexMonth+1) === null || week > 2"
+                    :disabled="week > specie.week_semis + 1 || week < specie.week_semis || week > specie.week_recolte + 1 || week < specie.week_recolte"
                   >
                     <template #activator="{ on, attrs }">
                       <v-sheet
-                        :color="getColorWeek(plank, indexMonth, week)"
+                        :color="getColorWeek(specie, indexMonth, week)"
                         elevation="0"
                         height="30"
                         width="100%"
@@ -51,16 +52,16 @@
                       >
                         <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
                           <v-img
-                            v-if="getCurrentSpecie(plank, indexMonth+1) && week === getCurrentSpecie(plank, indexMonth+1).week_semis && getColorWeek(plank, indexMonth, week).split('semis').length > 1"
-                            :src="`/species_icons/${getColorWeek(plank, indexMonth, week).split('semis')[0]}.svg`"
+                            v-if="isFirstWeekSemis(specie, indexMonth+1, week)"
+                            :src="`/species_icons/${specie.specie_name}.svg`"
                             class="img-species"
                             contain
                           />
                         </div>
                       </v-sheet>
                     </template>
-                    <span v-if="getCurrentSpecie(plank, indexMonth+1) !== null && week <= 2">
-                      {{ getCurrentSpecie(plank, indexMonth+1).complete_name }}
+                    <span>
+                      {{ specie.complete_name }}
                     </span>
                   </v-tooltip>
                 </v-row>
@@ -102,6 +103,9 @@ export default {
     })
   },
   methods: {
+    isFirstWeekSemis(specie, indexMonth, week) {
+      return indexMonth === specie.month_start_semis && week === 1;
+    },
     deleteColumnLeftBorder(specie, indexMonth, week) {
       if ((this.isSemis(specie, indexMonth, week) && week === 2) || (this.isRecolte(specie, indexMonth, week) && week === 2)) {
        this.$nextTick(() => {
@@ -123,9 +127,9 @@ export default {
     getCurrentSpecie(plank, indexMonth) {
       return plank.find(specie => specie.month_semis === indexMonth || specie.month_recolte === indexMonth) || null
     },
-    getColorWeek(plank, indexMonth, week) {
+    getColorWeek(specie, indexMonth, week) {
       indexMonth++;
-      const specie = this.getCurrentSpecie(plank, indexMonth);
+      // const specie = this.getCurrentSpecie(plank, indexMonth);
       if (specie) {
         // this.deleteColumnLeftBorder(specie, indexMonth, week);
         // semis
