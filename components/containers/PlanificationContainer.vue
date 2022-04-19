@@ -25,7 +25,12 @@ export default {
   components: {CalendarPlanificationRaw, CalendarPlanificationOptimized},
    data() {
     return {
-      activatedOptimisation: true,
+      activatedOptimisation: this.$store.state.activatedOptimisation,
+    }
+  },
+  watch: {
+    activatedOptimisation(newValue) {
+      this.$store.commit('setActivatedOptimisation', newValue);
     }
   }
 }
