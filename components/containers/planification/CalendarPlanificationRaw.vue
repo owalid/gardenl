@@ -16,57 +16,82 @@
             :key="indexPlanification"
             class="pa-0 ma-0"
              :class="{
-              'mt-10': Object.keys(planificationRaw).length > 1 && indexPlanification === Object.keys(planificationRaw)[1],
-              'border-top': Object.keys(planificationRaw).length > 1 && indexPlanification === Object.keys(planificationRaw)[1]
+              'mt-10': Object.keys(planificationRaw).length > 1 && planificationRaw[Object.keys(planificationRaw)[1]].length > 0 && indexPlanification === Object.keys(planificationRaw)[1],
+              'border-top': Object.keys(planificationRaw).length > 1 && planificationRaw[Object.keys(planificationRaw)[1]].length > 0 && indexPlanification === Object.keys(planificationRaw)[1]
             }"
           > <!-- PLANK -->
+          <div
+            v-if="planificationRaw[indexPlanification].length > 0"
+            class="planification-row"
+          >
+              <v-row
+                v-if="indexMonth === 0"
+                class="mt-2"
+                align="center" justify="center"
+              >
+                <v-img
+                  :src="planificationInfo[indexPlanification].img"
+                  class="img-planification"
+                  contain
+                />
+              </v-row>
+              <v-row
+                v-if="indexMonth === 0"
+                align="center"
+                justify="center"
+                class="mt-2"
+              >
+                {{planificationInfo[indexPlanification].label}}s
+              </v-row>
+          </div>
+              <!-- <template></template> -->
             <v-row
               v-for="(implantation, indexImplantation) in implantations"
               :key="indexImplantation"
               class="implantation-border"
               :class="{'mt-7': indexImplantation > 0}"
             > <!-- IMPLANTATION -->
-              <v-col
-                v-for="week in weeks"
-                :key="week"
-                class="pa-0 ma-0 column-border"
-                :class="{'column-last-week-border': isLastMonth(indexMonth) && isLastWeek(week)}"
-              > <!-- WEEK -->
-                <v-row
-                  v-for="(plank, indexPlank) in implantation"
-                  :key="indexPlank"
-                  :ref="`plank-${plank.uuid}-${week}-${indexMonth}`"
-                  :class="`plank-${plank.uuid}-${week}-${indexMonth}`"
-                  class="pa-0 ma-0 my-1"
-                > <!-- PLANK -->
-                  <v-tooltip
-                    left
-                    max-width="500px"
-                    :disabled="getColorWeek(plank, indexMonth, week) === ''"
-                  >
-                    <template #activator="{ on, attrs }">
-                      <v-sheet
-                        :color="getColorWeek(plank, indexMonth, week)"
-                        elevation="0"
-                        height="30"
-                        width="100%"
-                        v-bind="attrs"
-                        v-on="on"
-                      >
-                        <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
-                          <v-img
-                            v-if="isFirstWeekSemis(plank, indexMonth, week)"
-                            :src="`/species_icons/${plank.specie_name}.svg`"
-                            class="img-species"
-                            contain
-                          />
-                        </div>
-                      </v-sheet>
-                    </template>
-                    <span>{{ plank.complete_name }}</span>
-                  </v-tooltip>
-                </v-row>
-              </v-col>
+                <v-col
+                  v-for="week in weeks"
+                  :key="week"
+                  class="pa-0 ma-0 column-border"
+                  :class="{'column-last-week-border': isLastMonth(indexMonth) && isLastWeek(week)}"
+                > <!-- WEEK -->
+                  <v-row
+                    v-for="(plank, indexPlank) in implantation"
+                    :key="indexPlank"
+                    :ref="`plank-${plank.uuid}-${week}-${indexMonth}`"
+                    :class="`plank-${plank.uuid}-${week}-${indexMonth}`"
+                    class="pa-0 ma-0 my-1"
+                  > <!-- PLANK -->
+                    <v-tooltip
+                      left
+                      max-width="500px"
+                      :disabled="getColorWeek(plank, indexMonth, week) === ''"
+                    >
+                      <template #activator="{ on, attrs }">
+                        <v-sheet
+                          :color="getColorWeek(plank, indexMonth, week)"
+                          elevation="0"
+                          height="30"
+                          width="100%"
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
+                            <v-img
+                              v-if="isFirstWeekSemis(plank, indexMonth, week)"
+                              :src="`/species_icons/${plank.specie_name}.svg`"
+                              class="img-species"
+                              contain
+                            />
+                          </div>
+                        </v-sheet>
+                      </template>
+                      <span>{{ plank.complete_name }}</span>
+                    </v-tooltip>
+                  </v-row>
+                </v-col>
             </v-row>
           </div>
         </div>
@@ -149,6 +174,10 @@ export default {
   height: 100%;
 }
 
+.planification-row {
+  height: 100px;
+}
+
 .implantation-border {
   border-bottom: 1px solid rgba(0, 0, 0, 0.199);
 
@@ -178,5 +207,10 @@ export default {
 .img-species {
   width: 20px;
   height: 20px;
+}
+
+.img-planification {
+  width: 40px;
+  height: 40px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row class="mx-2" justify="center">
+    <v-row class="mx-2 mb-10" justify="center">
       <v-col v-for="(month, indexMonth) in months" :key="month">
         <v-row
           align="center"
@@ -20,6 +20,30 @@
               'border-top': Object.keys(planificationOptimized).length > 1 && indexPlanification === Object.keys(planificationOptimized)[1]
             }"
           > <!-- PLANK -->
+          <div
+            v-if="planificationOptimized[indexPlanification].length > 0"
+            class="planification-row"
+          >
+              <v-row
+                v-if="indexMonth === 0"
+                class="mt-2"
+                align="center" justify="center"
+              >
+                <v-img
+                  :src="planificationInfo[indexPlanification].img"
+                  class="img-planification"
+                  contain
+                />
+              </v-row>
+              <v-row
+                v-if="indexMonth === 0"
+                align="center"
+                justify="center"
+                class="mt-2"
+              >
+                {{planificationInfo[indexPlanification].label}}s
+              </v-row>
+          </div>
             <v-row
               v-for="(implantation, indexImplantation) in implantations"
               :key="indexImplantation"
@@ -124,5 +148,14 @@ export default {
 .img-species {
   width: 20px;
   height: 20px;
+}
+
+.planification-row {
+  height: 100px;
+}
+
+.img-planification {
+  width: 40px;
+  height: 40px;
 }
 </style>
