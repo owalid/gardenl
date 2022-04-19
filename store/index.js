@@ -471,6 +471,14 @@ export const state = () => ({
 })
 
 export const mutations = {
+  deleteAllSpecies(state) {
+    state.speciesSelected = []
+  },
+  removeSpecieDetailed(state, specieIndex) {
+    let specieSelected = [...state.speciesSelected]
+    specieSelected = specieSelected.filter(specie => specie.index !== specieIndex)  
+    state.speciesSelected = [...specieSelected]
+  },
   setSpeciesSelected(state, species) {
     state.speciesSelected = species
     this.$cookies.set('speciesSelected', state.speciesSelected)

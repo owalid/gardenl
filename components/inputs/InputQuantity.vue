@@ -69,6 +69,7 @@ export default {
         index: this.indexType,
         quantity
       })
+      this.$nuxt.$emit('updatedSpecies')
     }
   }
 }

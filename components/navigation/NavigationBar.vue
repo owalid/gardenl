@@ -1,12 +1,34 @@
 <template>
   <v-app-bar app flat color="primary" dense>
-    <v-row justify="end" align="center">
-      <h4 class="font-weight-medium lgrey--text my-0 mr-10">TOTAL</h4>
-      <h4 class="font-weight-medium lgrey--text my-0 mr-10">{{ totalSpeciesSelected.totalPlank }} planches</h4>
-      <h4 class="font-weight-medium lgrey--text my-0 mr-10">{{ totalSpeciesSelected.etp }} ETP</h4>
-      <h4 class="font-weight-medium lgrey--text my-0 mr-10">{{ totalSpeciesSelected.sumYield }} €</h4>
-      <h4 class="font-weight-medium lgrey--text my-0 mr-5">{{ totalSpeciesSelected.sumSurface }} m2</h4>
-      <modal-detail-species-selected />
+    <v-row align="center">
+        <v-btn
+          text
+          to="/"
+          class="font-weight-medium lgrey--text my-0 ml-10 mr-5"
+        >
+          Accueil
+        </v-btn>
+        <v-btn
+          text
+          to="/detail-varietes"
+          class="font-weight-medium lgrey--text my-0 mr-5"
+        >
+          Details
+        </v-btn>
+        <v-btn
+          text
+          to="/planification"
+          class="font-weight-medium lgrey--text my-0 mr-5"
+        >
+          Planification
+        </v-btn>
+        <v-spacer />
+        <h4 class="font-weight-medium lgrey--text my-0 mr-10">TOTAL</h4>
+        <h4 class="font-weight-medium lgrey--text my-0 mr-10">{{ totalSpeciesSelected.totalPlank }} planches</h4>
+        <h4 class="font-weight-medium lgrey--text my-0 mr-10">{{ totalSpeciesSelected.etp }} ETP</h4>
+        <h4 class="font-weight-medium lgrey--text my-0 mr-10">{{ totalSpeciesSelected.sumYield }} €</h4>
+        <h4 class="font-weight-medium lgrey--text my-0 mr-5">{{ totalSpeciesSelected.sumSurface }} m2</h4>
+        <modal-detail-species-selected />
     </v-row>
   </v-app-bar>
 </template>

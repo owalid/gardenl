@@ -1,25 +1,12 @@
 <template>
   <v-container>
-    <v-row justify="center" class="my-8">
+    <v-row justify="center" align="start" class="my-8">
       <h1 class="primary--text">
         Variétés
       </h1>
     </v-row>
     <detail-species-table />
     <v-row>
-      <v-row
-        align="end"
-        justify="start"
-        class="mt-7"
-      >
-        <v-btn
-          outlined
-          color="primary"
-          to="/"
-        >
-          Retour
-        </v-btn>
-      </v-row>
       <v-row align="end" justify="end" class="mt-7">
         <v-btn
           color="primary"

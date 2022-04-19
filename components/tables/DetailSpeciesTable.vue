@@ -1,6 +1,13 @@
 <template>
   <v-container>
-     <v-simple-table>
+    <v-row class="mb-10 mr-5">
+      <v-row align="start" justify="end">
+        <v-btn outlined small color="red" @click="deleteAllSpecies">
+          Tout supprimer <v-icon x-small class="ml-3">fas fa-trash</v-icon>
+        </v-btn>
+      </v-row>
+    </v-row>
+     <v-simple-table :key="key">
       <template #default>
         <thead>
           <tr>
@@ -26,6 +33,7 @@
                 <span>Surface sans maximisation avec la rotation. Une planche n’est occupé que par un seul légume.</span>
               </v-tooltip>
             </th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -63,6 +71,15 @@
             <td>
               {{ specieDetailed.quantity * 16 }}
             </td>
+            <td>
+              <v-btn
+                icon
+                x-small
+                @click="removeSpecieDetailed(specieDetailed.index)"
+              >
+                <v-icon x-small>fas fa-trash</v-icon>
+              </v-btn>
+            </td>
           </tr>
         </tbody>
       </template>
@@ -83,10 +100,25 @@ export default {
       default: false
     }
   },
+  data() {
+    return {
+      key: 0
+    }
+  },
   computed: {
     ...mapGetters({
       speciesDetailed: 'getSpeciesDetailed'
     })
+  },
+  methods: {
+    deleteAllSpecies() {
+      this.$router.push('/')
+      this.$store.commit('deleteAllSpecies')
+    },
+    removeSpecieDetailed(indexSpecieDetailed) {
+      this.$store.commit('removeSpecieDetailed', indexSpecieDetailed)
+      this.key++
+    }
   }
 }
 </script>
