@@ -15,10 +15,10 @@
             <th>Variété</th>
             <th>Type</th>
             <th>Planches</th>
-            <th>Rendement</th>
+            <th>Production (kg)</th>
             <th>CA (€)</th>
             <th>
-              Surface
+              Surface (m<sup>2</sup>)
               <v-tooltip left max-width="300px">
                 <template #activator="{ on, attrs }">
                   <v-icon

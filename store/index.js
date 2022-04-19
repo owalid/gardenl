@@ -460,7 +460,7 @@ export const getters = {
     const speciesDetailed = getters.getSpeciesDetailed
 
     const totalPlank = speciesDetailed.reduce((acc, cur) => acc + cur.quantity, 0)
-    const etp = ((speciesDetailed.reduce((acc, cur) => acc + cur.it_duration, 0) + 376) / 1600).toFixed(2)
+    const etp = ((speciesDetailed.reduce((acc, cur) => acc + (((Math.floor(cur.it_duration)+1)*2)*cur.quantity), 0) + 376) / 1600).toFixed(2)
     const sumYield = parseInt(speciesDetailed.reduce((acc, cur) => acc + cur.yield_by_plank * cur.quantity, 0))
     const sumSurface = parseInt(speciesDetailed.reduce((acc, cur) => acc + cur.quantity * 16, 0))
 
