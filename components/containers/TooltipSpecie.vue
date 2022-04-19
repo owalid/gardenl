@@ -2,7 +2,7 @@
     <v-tooltip
       left
       max-width="500px"
-      :disabled="week > currentSpecie.week_semis + 1 || week < currentSpecie.week_semis || week > currentSpecie.week_recolte + 1 || week < currentSpecie.week_recolte"
+      :disabled="!currentSpecie || week > currentSpecie.week_semis + 1 || week < currentSpecie.week_semis || week > currentSpecie.week_recolte + 1 || week < currentSpecie.week_recolte"
     >
       <template #activator="{ on, attrs }">
         <v-sheet
@@ -47,28 +47,29 @@ export default {
   },
   data() {
     return {
-      currentSpecie: {}
+      currentSpecie: {},
+      colorWeek: ''
     }
   },
   fetch() {
-    this.currentSpecie = this.plank.find(specie => specie.month_semis === this.indexMonth || specie.month_recolte === this.indexMonth) || null
-    this.colorWeek = this.getColorWeek(this.currentSpecie, this.indexMonth, this.week)
+    this.currentSpecie = this.plank.find(specie => specie.month_semis === this.month || specie.month_recolte === this.month) || null
+    this.colorWeek = this.getColorWeek(this.currentSpecie, this.month, this.week)
   },
   methods: {
     isRecolte() {
-      return this.currentSpecie.month_recolte === this.indexMonth && (this.currentSpecie.week_recolte === this.week || this.currentSpecie.week_recolte + 1 === this.week);
+      return this.currentSpecie.month_recolte === this.month && (this.currentSpecie.week_recolte === this.week || this.currentSpecie.week_recolte + 1 === this.week);
     },
     isSemis() {
-      return this.currentSpecie.month_semis === this.indexMonth && (this.currentSpecie.week_semis === this.week || this.currentSpecie.week_semis + 1 === this.week);
+      return this.currentSpecie.month_semis === this.month && (this.currentSpecie.week_semis === this.week || this.currentSpecie.week_semis + 1 === this.week);
     },
     getColorWeek() {
       if (this.currentSpecie) {
         // semis
-        if (this.isSemis(this.currentSpecie, this.indexMonth, this.week)) {
+        if (this.isSemis(this.currentSpecie, this.month, this.week)) {
           return `${this.currentSpecie.specie_name}semis`;
         }
         // recolte
-        if (this.isRecolte(this.currentSpecie, this.indexMonth, this.week)) {
+        if (this.isRecolte(this.currentSpecie, this.month, this.week)) {
           return `${this.currentSpecie.specie_name}recolte`;
         }
       }
@@ -77,3 +78,9 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+.img-species {
+  width: 20px;
+  height: 20px;
+}
+</style>
