@@ -89,10 +89,10 @@ export default (context, inject) => {
                                 for (let i=0; i < quantity; i++) {
                                   result.push({
                                     index: type.index,
-                                    month_start_recolte: type.month_start_recolte,
-                                    month_end_recolte: type.month_end_recolte,
-                                    month_start_semis: type.month_start_semis,
-                                    month_end_semis: type.month_end_semis,
+                                    month_start_recolte: type.month_start_recolte - 1,
+                                    month_end_recolte: type.month_end_recolte - 1,
+                                    month_start_semis: type.month_start_semis - 1,
+                                    month_end_semis: type.month_end_semis - 1,
                                     specie_name: specie.specie_index,
                                     garden: type.garden,
                                     fertilization: type.fertilization,

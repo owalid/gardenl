@@ -15,6 +15,10 @@
             v-for="(implantations, indexPlanification) in planificationOptimized"
             :key="indexPlanification"
             class="pa-0 ma-0"
+            :class="{
+              'mt-10': Object.keys(planificationOptimized).length > 1 && indexPlanification === Object.keys(planificationOptimized)[1],
+              'border-top': Object.keys(planificationOptimized).length > 1 && indexPlanification === Object.keys(planificationOptimized)[1]
+            }"
           > <!-- PLANK -->
             <v-row
               v-for="(implantation, indexImplantation) in implantations"

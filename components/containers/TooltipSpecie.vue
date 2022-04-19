@@ -15,7 +15,7 @@
         >
           <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
             <v-img
-              v-if="currentSpecie && currentSpecie.week_semis === week"
+              v-if="currentSpecie && currentSpecie.month_semis === month && currentSpecie.week_semis === week"
               :src="`/species_icons/${currentSpecie.specie_name}.svg`"
               class="img-species"
               contain

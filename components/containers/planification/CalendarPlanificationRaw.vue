@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row class="mx-2" justify="center">
+    <v-row class="mx-2 mb-10" justify="center">
       <v-col v-for="(month, indexMonth) in months" :key="month">
         <v-row
           align="center"
@@ -15,6 +15,10 @@
             v-for="(implantations, indexPlanification) in planificationRaw"
             :key="indexPlanification"
             class="pa-0 ma-0"
+             :class="{
+              'mt-10': Object.keys(planificationRaw).length > 1 && indexPlanification === Object.keys(planificationRaw)[1],
+              'border-top': Object.keys(planificationRaw).length > 1 && indexPlanification === Object.keys(planificationRaw)[1]
+            }"
           > <!-- PLANK -->
             <v-row
               v-for="(implantation, indexImplantation) in implantations"
@@ -51,7 +55,7 @@
                       >
                         <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
                           <v-img
-                            v-if="isFirstWeekSemis(plank, indexMonth+1, week)"
+                            v-if="isFirstWeekSemis(plank, indexMonth, week)"
                             :src="`/species_icons/${plank.specie_name}.svg`"
                             class="img-species"
                             contain
@@ -101,7 +105,7 @@ export default {
     deleteColumnLeftBorder(plank, indexMonth, week) {
       if ((this.isSemis(plank, indexMonth) && !this.isFirstWeekSemis(plank, indexMonth, week)) || (this.isRecolte(plank, indexMonth) && !this.isFirstMonthRecolte(plank, indexMonth, week))) {
        this.$nextTick(() => {
-          const elmt = this.$refs[`plank-${plank.uuid}-${week}-${indexMonth-1}`][0];
+          const elmt = this.$refs[`plank-${plank.uuid}-${week}-${indexMonth}`][0];
           elmt.parentNode.classList.remove('column-border')
         })
       }
@@ -119,11 +123,11 @@ export default {
       return plank.month_start_semis <= indexMonth && plank.month_end_semis >= indexMonth
     },
     nextWeekShouldBeColored(plank, indexMonth) {
-      indexMonth += 2;
+      indexMonth++;
       return this.isSemis(plank, indexMonth) || this.isRecolte(plank, indexMonth);
     },
     getColorWeek(plank, indexMonth, week) {
-      indexMonth++;
+      // indexMonth++;
       this.deleteColumnLeftBorder(plank, indexMonth, week);
       // semis
       if (this.isSemis(plank, indexMonth)) {
