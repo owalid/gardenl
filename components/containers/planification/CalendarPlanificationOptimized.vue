@@ -11,65 +11,11 @@
           {{month}}
         </v-row>
         <div v-if="!$fetchState.pending">
-          <div
-            v-for="(implantations, indexPlanification) in planificationOptimized"
-            :key="indexPlanification"
-            class="pa-0 ma-0"
-            :class="{
-              'mt-10': Object.keys(planificationOptimized).length > 1 && indexPlanification === Object.keys(planificationOptimized)[1],
-              'border-top': Object.keys(planificationOptimized).length > 1 && indexPlanification === Object.keys(planificationOptimized)[1]
-            }"
-          > <!-- PLANK -->
-          <div
-            v-if="planificationOptimized[indexPlanification].length > 0"
-            class="planification-row"
-          >
-              <v-row
-                v-if="indexMonth === 0"
-                class="mt-2"
-                align="center" justify="center"
-              >
-                <v-img
-                  :src="planificationInfo[indexPlanification].img"
-                  class="img-planification"
-                  contain
-                />
-              </v-row>
-              <v-row
-                v-if="indexMonth === 0"
-                align="center"
-                justify="center"
-                class="mt-2"
-              >
-                {{planificationInfo[indexPlanification].label}}s
-              </v-row>
-          </div>
-            <v-row
-              v-for="(implantation, indexImplantation) in implantations"
-              :key="indexImplantation"
-              class="implantation-border"
-              :class="{'mt-7': indexImplantation > 0}"
-            > <!-- IMPLANTATION -->
-              <v-col
-                v-for="week in weeks"
-                :key="week"
-                class="pa-0 ma-0 column-border"
-                :class="{'column-last-week-border': isLastMonth(indexMonth) && isLastWeek(week)}"
-              > <!-- WEEK -->
-                <v-row
-                  v-for="(plank, indexPlank) in implantation"
-                  :key="indexPlank"
-                  class="pa-0 ma-0 my-1"
-                > <!-- PLANK -->
-                  <tooltip-specie
-                    :plank="plank"
-                    :month="indexMonth"
-                    :week="week"
-                  />
-                </v-row>
-              </v-col>
-            </v-row>
-          </div>
+         <plannification-planks
+            :planification-optimized="planificationOptimized"
+            :planification-info="planificationInfo"
+            :index-month="indexMonth"
+         />
         </div>
       </v-col>
     </v-row>
@@ -85,12 +31,12 @@
 </template>
 <script>
 import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
-import TooltipSpecie from "~/components/containers/TooltipSpecie";
+import PlannificationPlanks from '~/components/containers/PlannificationPlanks';
 
 export default {
   name: "CalendarPlanificationOptimized",
   components: {
-    TooltipSpecie
+    PlannificationPlanks
   },
   mixins: [CalendarPlanificationMixin],
   data() {

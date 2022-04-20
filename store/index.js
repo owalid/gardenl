@@ -97,6 +97,8 @@ export const getters = {
                                     specie_name: specie.specie_index,
                                     garden: type.garden,
                                     fertilization: type.fertilization,
+                                    fertilization_label: type.fertilization_label,
+                                    implantation: type.implantation,
                                     delta_semis: type.delta_semis,
                                     delta_recolte: type.delta_recolte,
                                     time_semis_to_recolte: type.time_semis_to_recolte,

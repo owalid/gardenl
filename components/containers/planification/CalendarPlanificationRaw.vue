@@ -81,14 +81,18 @@
                           <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
                             <v-img
                               v-if="isFirstWeekSemis(plank, indexMonth, week)"
-                              :src="`/species_icons/${plank.specie_name}.svg`"
+                              :src="`/species_icons/low/${plank.specie_name}.png`"
                               class="img-species"
                               contain
                             />
                           </div>
                         </v-sheet>
                       </template>
-                      <span>{{ plank.complete_name }}</span>
+                      <span>
+                        Variété: {{ plank.complete_name }} <br />
+                        Fertilisation: {{ plank.fertilization_label }} <br />
+                        Implantation: {{ plank.implantation }}
+                      </span>
                     </v-tooltip>
                   </v-row>
                 </v-col>
@@ -106,7 +110,6 @@
   </div>
 </template>
 <script>
-// import { mapGetters } from "vuex";
 import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
 
 export default {
@@ -121,11 +124,9 @@ export default {
     this.planificationRaw = await this.$plannification.getPlanificationRaw();
     await this.$nextTick();
   },
-  // computed: {
-  //   ...mapGetters({
-  //     planificationRaw: 'getPlanificationRaw'
-  //   })
-  // },
+  mounted() {
+    this.$nuxt.$on('updatedSpecies', this.$fetch);
+  },
   methods: {
     deleteColumnLeftBorder(plank, indexMonth, week) {
       if ((this.isSemis(plank, indexMonth) && !this.isFirstWeekSemis(plank, indexMonth, week)) || (this.isRecolte(plank, indexMonth) && !this.isFirstMonthRecolte(plank, indexMonth, week))) {

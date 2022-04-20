@@ -96,6 +96,8 @@ export default (context, inject) => {
                                     specie_name: specie.specie_index,
                                     garden: type.garden,
                                     fertilization: type.fertilization,
+                                    fertilization_label: type.fertilization_label,
+                                    implantation: type.implantation,
                                     delta_semis: type.delta_semis,
                                     delta_recolte: type.delta_recolte,
                                     time_semis_to_recolte: type.time_semis_to_recolte,
@@ -205,17 +207,9 @@ export default (context, inject) => {
       } // need to match with 1 and 0
     }
     const planificationRaw = store.getters.getPlanificationRaw
-    // let gardens = []
-    let resultGardens = []
-    // let greenhouse = []
-    const finalResult = {}
 
-    // if ('gardens' in planificationRaw) {
-    //   gardens = planificationRaw.gardens
-    // }
-    // if ('greenhouse' in planificationRaw) {
-    //   greenhouse = planificationRaw.greenhouse
-    // }
+    let resultGardens = []
+    const finalResult = {}
 
 
     for (const planificationKey in planificationRaw) {

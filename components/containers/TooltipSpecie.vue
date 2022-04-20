@@ -16,7 +16,7 @@
           <div class="d-flex flex-column align-self-center justify-content-center" style="height: 30px">
             <v-img
               v-if="currentSpecie && currentSpecie.month_semis === month && currentSpecie.week_semis === week"
-              :src="`/species_icons/${currentSpecie.specie_name}.svg`"
+              :src="`/species_icons/low/${currentSpecie.specie_name}.png`"
               class="img-species"
               contain
             />
@@ -24,7 +24,9 @@
         </v-sheet>
       </template>
       <span v-if="currentSpecie !== null && week <= 2">
-        {{ currentSpecie.complete_name }}
+        Variété: {{ currentSpecie.complete_name }}  <br />
+        Fertilisation: {{ currentSpecie.fertilization_label }} <br />
+        Implantation: {{ currentSpecie.implantation }}
       </span>
     </v-tooltip>
 </template>
@@ -48,7 +50,7 @@ export default {
   data() {
     return {
       currentSpecie: {},
-      colorWeek: ''
+      colorWeek: {}
     }
   },
   fetch() {
