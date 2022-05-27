@@ -30,6 +30,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
 import PlannificationPlanks from '~/components/containers/PlannificationPlanks';
 
@@ -41,18 +42,18 @@ export default {
   mixins: [CalendarPlanificationMixin],
   data() {
     return {
-      planificationOptimized: [],
       currentPlankWeek: [],
       currentPlankIndex: -1,
       allSpecies: {}
     }
   },
   async fetch() {
-    this.planificationOptimized = this.$plannification.getPlanificationOptimized();
     await this.$nextTick();
   },
-  mounted() {
-    this.$nuxt.$on('updatedSpecies', this.$fetch);
+  computed: {
+    ...mapGetters({
+      planificationOptimized: 'getPlanificationOptimized'
+    })
   },
 }
 </script>

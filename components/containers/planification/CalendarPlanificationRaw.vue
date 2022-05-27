@@ -110,19 +110,19 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import CalendarPlanificationMixin from "~/mixins/CalendarPlanificationMixin";
 
 export default {
   name: "CalendarPlanificationRaw",
   mixins: [CalendarPlanificationMixin],
-  data() {
-    return {
-      planificationRaw: []
-    }
-  },
   async fetch() {
-    this.planificationRaw = await this.$plannification.getPlanificationRaw();
     await this.$nextTick();
+  },
+  computed: {
+    ...mapGetters({
+      planificationRaw: 'getPlanificationRaw'
+    })
   },
   mounted() {
     this.$nuxt.$on('updatedSpecies', this.$fetch);

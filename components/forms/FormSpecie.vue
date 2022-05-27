@@ -82,7 +82,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import dataSpecies from '~/data/dataSpecies.json'
+import dataSpecies from '~/data/data_species.json'
 import ModalDisplaySpecieType from '~/components/modals/ModalDisplaySpecieType'
 import InputQuantity from '~/components/inputs/InputQuantity.vue'
 

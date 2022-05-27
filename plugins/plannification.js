@@ -1,9 +1,8 @@
 /* eslint-disable no-console */
-import dataSpecies from '~/data/dataSpecies.json';
+import data_species from '~/data/data_species.json';
 
 export default (context, inject) => {
   const { store } = context.app;
-    // const inRangeStrictly = (value, min, max) => value > min && value < max;
   const inRange = (value, min, max) => value >= min && value <= max;
   const getRangeArray = (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i);
 
@@ -79,7 +78,7 @@ export default (context, inject) => {
       gardens: [],
       greenhouse: []
     }
-    dataSpecies
+    data_species
         // filter by selected specie and get minimal data
         .map(specie => specie.types
                               .filter(type => store.state.speciesSelected.find(specieSelected => specieSelected.index === type.index))
@@ -188,8 +187,13 @@ export default (context, inject) => {
         Succéder selon période semis / récolte et durée en champs 
         Serre ou Plein Champs -> les variétés de plein champ peuvent aller en serre mais les variétés en serres ne peuvent pas aller en plein champ
         Ne pas mettre 2 fois la même famille sur une planche
-        Alterner fertilisation forte puis moyenne puis faible
-        Une fertilisation forte peut suivre une fertilisation faible
+        Alterner fertilisation forte puis moyenne puis faible (Une fertilisation forte peut suivre une fertilisation faible)
+
+      en rules:
+        Succeed according to sowing / harvesting period and duration in the field 
+        Greenhouse or field -> field varieties can go into the greenhouse but greenhouse varieties cannot go into the field
+        Do not put the same family twice on a plank
+        Alternate strong fertilization then medium then weak (A strong fertilization can follow a weak fertilization)
     */
     
     const ruleFertilization = {
@@ -253,10 +257,6 @@ export default (context, inject) => {
                 let isValidate = false
                 let solutions = []
   
-                // console.log("===========================")
-                // console.log("candidatSpecie", candidatSpecie)
-                // console.log("currentSpecie", currentSpecie);
-  
                 // Know if there are some place for currentSpecie (week's recolte and semis)
                 // if there is a place for a species in the board it is before sowing or after harvesting or its harvesting is during sowing or its sowing is during harvesting
                 // here it is necessary to make evolve the species of the currentPlank in the case where we can put the species in the plate (according to the months and then to the week)
@@ -301,16 +301,12 @@ export default (context, inject) => {
                   || (inRange(currentSpecie.month_end_semis, candidatSpecie.month_start_recolte, candidatSpecie.month_end_recolte) &&
                       currentSpecie.month_end_recolte >= candidatSpecie.month_end_recolte) // partialy
                   ) { // all or partly is in range recolte
-                    // console.log('all is in range recolte')
                     const deltaMonthBetweenQuandiadateAndCurrentRecolte = getRangeArray(candidatSpecie.month_start_recolte, currentSpecie.month_end_recolte);
-                    // console.log(deltaMonthBetweenQuandiadateAndCurrentRecolte)
                     if (deltaMonthBetweenQuandiadateAndCurrentRecolte.length > 0) {
                       solutions = [...generateNewSolutionsPosition(solutions, candidatSpecie, currentSpecie, false, deltaMonthBetweenQuandiadateAndCurrentRecolte)]
                       canInsert = true
                     }
                 } 
-                
-                // console.log("sol", solutions)
                 
                 if (canInsert) {
                   currentPlank.forEach(specieToValidate => { // (2)
@@ -340,7 +336,6 @@ export default (context, inject) => {
                         const newSpecieNotInSpecieToValidate = !inRange(newSpecie.month_semis, specieToValidate.month_semis, specieToValidate.month_recolte)
                                                                 && !inRange(newSpecie.month_recolte, specieToValidate.month_semis, specieToValidate.month_recolte)
                                                                 
-                        // console.log("newSpecieNotInSpecieToValidate", newSpecieNotInSpecieToValidate)
                         return (
                           isValidrecolteSpecieToValidateQuandidate
                           && candidateNotInSpecieToValidate
@@ -356,13 +351,10 @@ export default (context, inject) => {
                   solutions = solutions.filter(({newSpecie, newCandidateSpecie}) => {
                     const candidateNotInSpecieToValidate = !inRange(newCandidateSpecie.month_semis, newSpecie.month_semis, newSpecie.month_recolte) && !inRange(newCandidateSpecie.month_recolte, newSpecie.month_semis, newSpecie.month_recolte)
                     const newSpecieNotInSpecieToValidate = !inRange(newSpecie.month_semis, newCandidateSpecie.month_semis, newCandidateSpecie.month_recolte) && !inRange(newSpecie.month_recolte, newCandidateSpecie.month_semis, newCandidateSpecie.month_recolte)
-                    // console.log("candidateNotInSpecieToValidate && newSpecieNotInSpecieToValidate", candidateNotInSpecieToValidate && newSpecieNotInSpecieToValidate)
                     return candidateNotInSpecieToValidate && newSpecieNotInSpecieToValidate
                   })
                   isValidate = solutions.length > 0
                 }
-                // console.log("isValidate", isValidate)
-                // console.log("solutions.length", solutions.length)
                 if (isValidate) {
                   // Know if we can add with this fertilisation's order high, medium, low occording currentSpecie.fertilisation
                   
@@ -374,7 +366,6 @@ export default (context, inject) => {
                     return ruleQuanditateFertilization.match_with[indexMatchWithCurrent] === ruleCurrentFertilization.index;
                   })
   
-                  // console.log("ultimateSolution.length", ultimateSolution.length)
                   if (ultimateSolution.length > 0) {
                     const solution = ultimateSolution[0]
                     found = true;
@@ -404,8 +395,6 @@ export default (context, inject) => {
           }
         }
       });
-      // console.log("===========================")
-      // planificationRaw[planificationKey] = planificationRaw[planificationKey].reduce((flat, toFlatten) => flat.concat(toFlatten), [])
   
       resultGardens = [resultGardens]
   

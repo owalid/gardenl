@@ -33,7 +33,7 @@
     </div>
 </template>
 <script>
-import dataSpecies from '~/data/dataSpecies.json'
+import dataSpecies from '~/data/data_species.json'
 export default {
   name: "InputQuantity",
   props: {
