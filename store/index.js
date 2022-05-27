@@ -260,7 +260,6 @@ export const getters = {
                     // if there is a place for a species in the board it is before sowing or after harvesting or its harvesting is during sowing or its sowing is during harvesting
                     // here it is necessary to make evolve the species of the currentPlank in the case where we can put the species in the plate (according to the months and then to the week)
                     if (currentSpecie.month_semis < candidatSpecie.month_semis && currentSpecie.month_recolte < candidatSpecie.month_semis) { // if before all            
-                      // console.log('before all')
                       canInsert = true
                       solutions.push(
                         {
@@ -276,9 +275,7 @@ export const getters = {
                           && inRange(currentSpecie.month_end_recolte, candidatSpecie.month_start_semis, candidatSpecie.month_end_semis)) // partialy
                       ) { // all or partly is in range semis
                         
-                        // console.log('all is in range semis')
                         const deltaMonthBetweenQuandiadateAndCurrentSemis = getRangeArray(currentSpecie.month_end_recolte, candidatSpecie.month_end_semis);
-                        // console.log(deltaMonthBetweenQuandiadateAndCurrentSemis)
                         if (deltaMonthBetweenQuandiadateAndCurrentSemis.length > 0) {
                           solutions = [...generateNewSolutionsPosition(solutions, candidatSpecie, currentSpecie, true, deltaMonthBetweenQuandiadateAndCurrentSemis)]
                           canInsert = true
